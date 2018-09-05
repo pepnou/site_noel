@@ -1,0 +1,130 @@
+
+*
+{
+	margin: 0;
+	padding: 0;
+	color: black;
+	text-decoration: none;
+}
+
+#connection, #connection > form
+{
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+}
+
+#connection > *
+{
+	width: 250px;
+	text-align: center;
+
+	margin-top: 10px;
+}
+
+#connection > form > *
+{
+	margin-top: 5px;
+}
+
+nav
+{
+	display: flex;
+	flex-direction: row;
+
+	position: fixed;
+	right: 0px;
+	top: 0px;
+
+	width: 100%;
+	height: 90px;
+	z-index: 255;
+}
+
+nav > *
+{
+	height: 100%;
+	width: 15vw;
+
+	border-left: 1px solid black;
+	border-bottom: 2px solid black;
+
+	/*background-color: rgba(125,125,125,0.90);*/
+	background-color: rgba(50,150,50,0.90);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: medium;
+}
+
+nav > a
+{
+	min-width: 100px;
+}
+
+nav > a:hover
+{
+	/*background-color: rgba(75,100,75,0.85);
+	border-top: 5px solid rgba(50,150,50,0.85);*/
+	background-color: rgba(210,130,40,0.90);
+	border: 5px solid rgba(170,100,30,0.90);
+}
+
+nav > a:hover + *
+{
+	border-left: 0px solid black;
+}
+
+nav > div
+{
+	flex: 1;
+}
+
+body
+{
+	display: flex;
+	flex-direction: column;
+
+	background-color: rgba(75,175,75,0.85);
+
+	padding: 50px;
+	padding-top: 150px;
+
+	min-height: 90vh;
+}
+
+
+
+
+
+
+
+.horz
+{
+	display: flex;
+	flex-direction: row;
+}
+
+.vert
+{
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.align-prim
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+.align-sec
+{
+	display: flex;
+	align-items: center;
+}
+

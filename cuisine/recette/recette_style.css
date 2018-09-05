@@ -1,0 +1,217 @@
+/*haut/droit/bas/gauche*/
+h1
+{
+	margin-bottom: 50px;
+
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	/*box-shadow: -10px 10px 2px 2px rgba(40,95,40,0.85);*/
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+}
+
+h2
+{
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+}
+
+#contenu
+{
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+
+
+
+
+
+legend
+{
+	border: 1px solid rgba(170,100,30,0.90);
+	border-radius: 5px;
+
+	box-shadow: 0px 2px 2px 0px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	padding: 2px 5px 2px 5px;
+	margin-left: 5px;
+}
+
+fieldset > fieldset > fieldset
+{
+	background-color: rgba(60,145,60,0.85);
+}
+
+fieldset > fieldset
+{
+	background-color: rgba(65,155,65,0.85);
+}
+
+fieldset
+{
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	padding: 10px 5px 10px 5px;
+
+	background-color: rgba(70,165,70,0.85);
+}
+
+fieldset + fieldset
+{
+	margin-top: 10px;
+}
+
+fieldset > div
+{
+	display: flex;
+	flex-direction: column;
+}
+
+
+fieldset > div > div
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+fieldset > div > *
+{
+	margin-top: 5px;
+}
+
+#preparation
+{
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+
+	text-align: center;
+
+	margin-left: 50px;
+}
+
+
+#ingredient > div > p:nth-of-type(1)
+{
+	flex: 1;
+}
+
+#ingredient > div > p
+{
+	text-align: center;
+}
+
+#ingredient > div
+{
+	background-color: rgba(55,135,55,0.85);
+
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	margin-top: 5px;
+	padding: 5px;
+}
+
+#ingredient > div > img
+{
+	width: 50px;
+	height: 50px;
+
+	padding: 3px;
+
+	background-color: rgba(50,125,50,0.85);
+
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+}
+
+
+#photo_div
+{
+	margin-top: 10px;
+
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	background-color: rgba(65,150,65,0.85);
+
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-between;
+	align-items: center;
+
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#photo
+{
+	/*visibility: hidden;*/
+	position: absolute;
+
+	top: 0;
+	left: 0;
+}
+
+#etapes legend, #etapes p
+{
+	text-align: left;
+}
+
+
+
+
+#etapes
+{
+	display: flex;
+	flex-direction: column;
+
+	flex-wrap: nowrap;
+
+	margin-right: 25px;
+	margin-top: 25px;
+}
+
+#etapes > fieldset
+{
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	background-color: rgba(65,150,65,0.85);
+
+	flex: 1;
+}
+
+#etapes > fieldset > div
+{
+	padding: 0px 5px 0px 5px;
+}
+
+#etapes > fieldset > div > div > img
+{
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	background-color: rgba(55,125,55,0.85);
+
+	width: 150px;
+	height: 150px;
+
+	margin-right: 10px;
+}
