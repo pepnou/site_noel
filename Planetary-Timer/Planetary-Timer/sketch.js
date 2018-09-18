@@ -3,7 +3,7 @@
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 10000 );
 
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
@@ -41,6 +41,40 @@ scene.add(spheres[0]);
 spheres.push(new THREE.Mesh( geometry, material ));
 planets.push(new Planet(750, 300, 'test', '16/09/2018'));
 scene.add(spheres[1]);
+
+
+var loader = new THREE.GLTFLoader();
+loader.load( 'blackhole/scene.gltf', function ( gltf ) {
+  /*gltf.scene.traverse( function ( child ) {
+    if ( child.isMesh ) {
+      child.material.envMap = envMap;
+    }
+  } );*/
+
+  gltf.scene.scale.set(2,2,2);
+  gltf.scene.rotation.y = Math.PI/2;
+
+  scene.add( gltf.scene );
+
+}, undefined, function ( e ) {
+  console.error( e );
+} );
+
+
+var geometry2 = new THREE.CubeGeometry(10000,10000,10000);
+var cubeMaterials = 
+[
+  new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load("skybox/purplenebula_ft.jpg"), side: THREE.DoubleSide} ),
+  new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load("skybox/purplenebula_bk.jpg"), side: THREE.DoubleSide} ),
+  new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load("skybox/purplenebula_up.jpg"), side: THREE.DoubleSide} ),
+  new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load("skybox/purplenebula_dn.jpg"), side: THREE.DoubleSide} ),
+  new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load("skybox/purplenebula_lf.jpg"), side: THREE.DoubleSide} ),
+  new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load("skybox/purplenebula_rt.jpg"), side: THREE.DoubleSide} )
+];
+//var cubeMaterial = new THREE.MeshFaceMaterial( cubeMaterials );
+var cube = new THREE.Mesh(geometry2, cubeMaterials);
+
+scene.add(cube);
 
 
 var update = function()
