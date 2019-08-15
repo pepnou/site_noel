@@ -3,7 +3,7 @@
 
 	if(!isset($_SESSION['id']))
 	{
-		include("../../general/connection/connection.php");
+		include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/user_connection/connection/connection.php");
 	}
 	else
 	{
@@ -21,7 +21,7 @@
 						
 					</header>
 
-					<?php include("../../general/nav.php"); ?>
+					<?php include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/nav.php"); ?>
 
 					<?php
 						if(!isset($_GET['id']))

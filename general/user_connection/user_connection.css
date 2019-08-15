@@ -1,0 +1,20 @@
+#title, #title > form
+{
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+}
+
+#title > *
+{
+	width: 250px;
+	text-align: center;
+
+	margin-top: 10px;
+}
+
+#title > form > *
+{
+	margin-top: 5px;
+}

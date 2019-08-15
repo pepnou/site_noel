@@ -1,9 +1,11 @@
 <?php
-	session_start();
+	if(!isset($_SESSION)) {
+		session_start();
+	}
 
 	if(!isset($_SESSION['id']))
 	{
-		include("../../general/connection/connection.php");
+		include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/user_connection/connection/connection.php");
 	}
 	else
 	{
@@ -38,7 +40,7 @@
 							<?php
 						}
 
-						include("../../general/nav.php");
+						include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/nav.php");
 
 						$mysqli = new mysqli('localhost', 'root', '', 'mydb');
 

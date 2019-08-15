@@ -7,27 +7,6 @@
 	text-decoration: none;
 }
 
-#connection, #connection > form
-{
-	display: flex;
-	flex-direction: column;
-
-	align-items: center;
-}
-
-#connection > *
-{
-	width: 250px;
-	text-align: center;
-
-	margin-top: 10px;
-}
-
-#connection > form > *
-{
-	margin-top: 5px;
-}
-
 nav
 {
 	display: flex;
