@@ -29,7 +29,7 @@ function update_temps() {
 		h.innerHTML +=tmp.toString()+'h';
 
 	tmp = minute%60;
-	if(!tmp)
+	if(tmp < 10)
 		h.innerHTML += '0'+tmp.toString()+'min';
 	else
 		h.innerHTML += tmp.toString()+'min';
