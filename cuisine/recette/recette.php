@@ -12,7 +12,7 @@
 			<html>
 				<head>
 					<title>Tableau de bord</title>
-					<link rel="stylesheet" type="text/css" href="../../general/gen_style.css">
+					<link rel="stylesheet" type="text/css" href="/site_noel/general/gen_style.css">
 					<link rel="stylesheet" type="text/css" href="recette_style.css">
 					<script type="text/javascript" src="recette_scripts.js"></script>
 				</head>

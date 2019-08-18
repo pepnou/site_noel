@@ -14,8 +14,8 @@ function getResultsR() { // Effectue une requête et récupère les résultats
 		cout = document.getElementById('cout'),
 		temps_prep = document.getElementById('temps_prep'),
 		ingredient = document.getElementById('ids_ing'),
-		tag = document.getElementById('tag'),
-		video = document.getElementById('video')/*,
+		tag = document.getElementById('tag');
+		/*video = document.getElementById('video')/*,
 		type = document.getElementById('')*/;
 
     var xhr = new XMLHttpRequest();
@@ -41,7 +41,23 @@ function getResultsR() { // Effectue une requête et récupère les résultats
 		saison.push(4);
 	saison = saison.join('|');
 
-    xhr.send('nom='+nom.value + '&favori='+favori.checked + '&saison='+saison + '&type='+type.value + '&utilisateur='+utilisateur.value + '&pays='+pays.value + '&facilite='+facilite.value + '&cout='+cout.value + '&temps_prep='+temps_prep.value + '&ingredient='+ingredient.value + '&tag='+tag.value + '&video='+video.checked);
+
+	var request =	'nom=' + nom.value + 
+					'&favori=' + favori.checked + 
+					'&saison=' + saison + 
+					'&type=' + type.value + 
+					'&utilisateur=' + utilisateur.value + 
+					'&pays=' + pays.value + 
+					'&facilite=' + facilite.value + 
+					'&cout=' + cout.value + 
+					'&temps_prep=' + temps_prep.value + 
+					'&ingredient=' + ingredient.value + 
+					'&tag=' + tag.value/* + 
+					'&video=' + video.checked*/;
+
+	//console.log(request);
+
+    xhr.send(request);
 	//xhr.send('param1=' + value1 + '&param2=' + value2);
 
     return xhr;
@@ -52,7 +68,7 @@ function displayResultsR(response) { // Affiche les résultats d'une requête
 	var results = document.getElementById('recette');
 
 	//results.style.display = response.length ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultat
-	//console.log(response);
+	//console.log('response : ' + response);
 
 	results.innerHTML = ''; // On vide les résultats
 

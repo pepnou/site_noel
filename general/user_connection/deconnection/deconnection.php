@@ -19,7 +19,7 @@
 		</script>
 		<p>Ou cliquer <a href="presentation.php">ici</a> en cas de non-redirection.</p>-->
 		<script type="text/javascript">
-			window.location.replace('../../Accueil/Presentation/presentation.php');
+			window.location.replace('/site_noel/Accueil/Presentation/presentation.php');
 		</script>
 	</body>
 </html>

@@ -6,8 +6,8 @@
 	if(isset($_SESSION['id'])) {
 		?>
 			<script type="text/javascript">
-				//window.location.replace('../../../Accueil/Presentation/presentation.php');
-				window.location.replace('/');
+				window.location.replace('/site_noel/Accueil/Presentation/presentation.php');
+				//window.location.replace('/');
 			</script>
 		<?php
 	}

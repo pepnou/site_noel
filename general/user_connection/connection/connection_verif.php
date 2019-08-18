@@ -47,7 +47,8 @@
 		$result->free();
 		?>
 			<script type="text/javascript">
-				window.location.replace('');
+				//window.location.replace('.');
+				location.reload(/*true*/);
 			</script>
 		<?php
 	}

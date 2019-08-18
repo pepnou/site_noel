@@ -14,7 +14,7 @@
 			<html>
 				<head>
 					<title>Tableau de bord</title>
-					<link rel="stylesheet" type="text/css" href="../../general/gen_style.css">
+					<link rel="stylesheet" type="text/css" href="/site_noel/general/gen_style.css">
 					<link rel="stylesheet" type="text/css" href="search_style.css">
 					<script type="text/javascript" src="search_recette.js"></script>
 					<script type="text/javascript" src="search_scripts.js"></script>
@@ -31,14 +31,6 @@
 					</header>
 
 					<?php
-						if(!isset($_SESSION['id']))
-						{
-							?>
-								<script type="text/javascript">
-									window.location.replace('../../general/connection.php');
-								</script>
-							<?php
-						}
 
 						include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/nav.php");
 
@@ -77,8 +69,6 @@
 												<label for="nom">Nom</label>
 											</div>
 										</div>
-										<!--<div id="nom_result" class="vert"></div>
-										<script type="text/javascript" src="search_nom.js"></script>-->
 									</fieldset>
 									<fieldset>
 										<legend>
@@ -280,7 +270,7 @@
 												<input type="hidden" name="tag" id="tag">
 											</div>
 										</fieldset>
-										<fieldset>
+										<!--<fieldset>
 											<legend>
 												Autre
 											</legend>
@@ -290,7 +280,7 @@
 													<label for="video">Video explicative</label>
 												</div>
 											</div>
-										</fieldset>
+										</fieldset>-->
 									</fieldset>
 								</fieldset>
 							</form>

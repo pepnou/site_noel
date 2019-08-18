@@ -51,6 +51,6 @@
 
 		echo "<p>A bientot sur le site!</p>";
 
-		echo "<p><br><br><a href=\"../../../Acceuil/Presentation/presentation.php\"><Acceuil/a></p>";
+		echo "<p><br><br><a href=\"/site_noel/Acceuil/Presentation/presentation.php\"><Acceuil/a></p>";
 	}
 ?>
