@@ -238,3 +238,18 @@ label, #temps > p
 
 	margin-top: 5px;
 }
+
+#insert_ingredient
+{
+	padding: 3px 15px 3px 15px;
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+	background-color: rgba(210,130,40,0.90);
+	text-align: center;
+	box-shadow: 0px 2px 2px 0px;
+}
+
+#insert_ingredient:hover
+{
+	cursor: pointer;
+}
