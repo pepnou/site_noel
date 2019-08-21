@@ -17,7 +17,6 @@
 					<link rel="stylesheet" type="text/css" href="/site_noel/general/gen_style.css">
 					<link rel="stylesheet" type="text/css" href="./insert_style.css">
 					<script type="text/javascript" src="time_script.js"></script>
-					<script type="text/javascript" src="insert_ingredient.js"></script>
 				</head>
 				<body>
 					<header>
@@ -191,6 +190,11 @@
 													<label for="ingredient">Ingredient</label>
 												</div>
 											</div>
+											<div>
+												<div id="explanation">
+													<p>Ingredient</p><p>Quantité</p><p>Unité</p>
+												</div>
+											</div>
 											<div id="ing_result"></div>
 											<div id="ing_choisis"></div>
 											<input type="hidden" name="ids_ing" id="ids_ing">
@@ -210,33 +214,8 @@
 																<label>Image (url)</label>
 															</div>
 															<div>
-																<!--<a onclick="insert_ingredient();" id="insert_ingredient" href="#" style="padding: 3px 15px 3px 15px;border: 3px solid rgba(170,100,30,0.90);border-radius: 5px 20px;background-color: rgba(210,130,40,0.90);text-align: center;box-shadow: 0px 2px 2px 0px;">
-																	Ajouter
-																</a>-->
 																<input type="button" value="Ajouter" id="insert_ingredient">
-																<script type="text/javascript">
-																	document.getElementById('insert_ingredient').addEventListener("click", function() {
-																		var nom_ingredient = document.getElementById('nom_ingredient'),
-																		image_ingredient = document.getElementById('image_ingredient');
-
-																		var xhr = new XMLHttpRequest();
-																		xhr.open('POST', './insert_ingredient.php');
-																		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-																		var request =	'nom_ingredient=' + nom_ingredient.value + 
-																						'&image_ingredient=' + image_ingredient.value;
-
-																		xhr.addEventListener('readystatechange', function() {
-																	    	if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-																	            console.log(xhr.responseText);
-																	    	}
-																	    });
-
-																		xhr.send(request);
-
-																		return xhr;
-																	});
-																</script>
+																<script type="text/javascript" src="./insert_ingredient.js"></script>
 															</div>
 														</div>
 													</form>

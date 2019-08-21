@@ -1,7 +1,6 @@
-function insert_ingredient() { // Effectue une requête et récupère les résultats
-		
+document.getElementById('insert_ingredient').addEventListener("click", function() {
 	var nom_ingredient = document.getElementById('nom_ingredient'),
-		image_ingredient = document.getElementById('image_ingredient');
+	image_ingredient = document.getElementById('image_ingredient');
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', './insert_ingredient.php');
@@ -11,12 +10,12 @@ function insert_ingredient() { // Effectue une requête et récupère les résul
 					'&image_ingredient=' + image_ingredient.value;
 
 	xhr.addEventListener('readystatechange', function() {
-    	if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            console.log(xhr.responseText);
-    	}
-    });
+		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+		console.log(xhr.responseText);
+		}
+		});
 
-	xhr.send(request);
+		xhr.send(request);
 
-	return xhr;
-}
+		return xhr;
+});

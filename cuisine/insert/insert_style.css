@@ -253,3 +253,9 @@ label, #temps > p
 {
 	cursor: pointer;
 }
+
+#explanation > p
+{
+	width: 100%;
+	text-align: center;
+}
