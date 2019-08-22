@@ -191,12 +191,12 @@
 												</div>
 											</div>
 											<div>
-												<div id="explanation">
+												<!--<div id="explanation">
 													<p>Ingredient</p><p>Quantité</p><p>Unité</p>
-												</div>
+												</div>-->
 											</div>
-											<div id="ing_result"></div>
-											<div id="ing_choisis"></div>
+											<div id="ing_result" class="ingredient_selection"></div>
+											<div id="ing_choisis" class="ingredient_selection"></div>
 											<input type="hidden" name="ids_ing" id="ids_ing">
 											<script type="text/javascript" src="./search_ingredient.js"></script>
 											<fieldset style="margin-top: 10px;">
@@ -256,9 +256,9 @@
 							</form>
 						</div>
 						<div id="resultats">
-							<h2>Resultats</h2>
+							<h2>Réalisation</h2>
 							<div id="recette">
-
+								<textarea style="width: initial;" autocapitalize="sentences" cols="20"></textarea>
 							</div>
 						</div>
 					</div>

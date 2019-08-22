@@ -87,7 +87,7 @@
 		if(!ingredients.find(function(element) {
 			return element == ids[pos];
 		})) {
-			var div = choisis.appendChild(document.createElement('div'));
+			/*var div = choisis.appendChild(document.createElement('div'));
 			div.innerHTML = result.innerHTML;
 
 			var quantity = div.appendChild(document.createElement('input'));
@@ -101,6 +101,36 @@
 			unit.id = 'unit' + pos;
 
 			var button = div.appendChild(document.createElement('input'));
+			button.type = 'button';
+			button.value = ' - ';
+			button.id = 'id_ing'+ids[pos];*/
+
+			var div = choisis.appendChild(document.createElement('div'));
+
+			var div_ingredient = div.appendChild(document.createElement('div'));
+			div_ingredient.innerHTML = result.innerHTML;
+
+			var div_quantity_unit = div.appendChild(document.createElement('div'));
+			var div_quantity = div_quantity_unit.appendChild(document.createElement('div'));
+			var div_unit = div_quantity_unit.appendChild(document.createElement('div'));
+
+			var quantity_label = div_quantity.appendChild(document.createElement('p'));
+			quantity_label.innerText = 'Quantité : '
+
+			var quantity = div_quantity.appendChild(document.createElement('input'));
+			quantity.type = 'number';
+			quantity.id = 'quantity' + pos;
+			quantity.style = 'width: 30px;'
+
+			var unit_label = div_unit.appendChild(document.createElement('p'));
+			unit_label.innerText = 'Unité : ';
+
+			var unit = div_unit.appendChild(document.createElement('input'));
+			unit.type = 'text';
+			unit.size = '7';
+			unit.id = 'unit' + pos;
+
+			var button = div_ingredient.appendChild(document.createElement('input'));
 			button.type = 'button';
 			button.value = ' - ';
 			button.id = 'id_ing'+ids[pos];
@@ -129,7 +159,7 @@
 		ingredients.splice(ingredients.indexOf(id),1);
 		ids_ing.value = ingredients.join('|');
 
-		result.parentNode.parentNode.removeChild(result.parentNode);
+		result.parentNode.parentNode.parentNode.removeChild(result.parentNode.parentNode);
 	}
 	
 	
