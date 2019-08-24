@@ -39,7 +39,8 @@
 					?>
 
 
-					<a href="/site_noel/cuisine/insert/insert.php" style="width: 20%; margin-bottom: 10px;"><h2>Inserer</h2></a>
+					<!--<a href="/site_noel/cuisine/insert/insert.php" style="width: 20%; margin-bottom: 10px;"><h2>Inserer</h2></a>-->
+					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;">Inserer</h2>
 
 					<h1>Insertion de Recettes</h1>
 
@@ -190,11 +191,6 @@
 													<label for="ingredient">Ingredient</label>
 												</div>
 											</div>
-											<div>
-												<!--<div id="explanation">
-													<p>Ingredient</p><p>Quantité</p><p>Unité</p>
-												</div>-->
-											</div>
 											<div id="ing_result" class="ingredient_selection"></div>
 											<div id="ing_choisis" class="ingredient_selection"></div>
 											<input type="hidden" name="ids_ing" id="ids_ing">
@@ -257,8 +253,45 @@
 						</div>
 						<div id="resultats">
 							<h2>Réalisation</h2>
-							<div id="recette">
-								<textarea style="width: initial;" autocapitalize="sentences" cols="20"></textarea>
+							<div id="realisation">
+								<div id="steps">
+									<fieldset>
+										<legend>
+											Etape 1 :
+										</legend>
+										<textarea rows="7"></textarea>
+										<p>Photo (optionnel) :</p>
+										<input style="width: 100%;" type="url" id="photo1">
+									</fieldset>
+								</div>
+								<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">
+									<input type="button" value="Ajouter une étape" id="AjoutEtape">
+									<input type="button" value="Retirer une étape" id="SupprEtape">
+									<script type="text/javascript">
+										var steps = document.getElementById("steps");
+
+										document.getElementById("AjoutEtape").addEventListener("click", function() {
+											var fieldset = steps.appendChild(document.createElement("fieldset"));
+											var legend = fieldset.appendChild(document.createElement("legend"));
+											var textarea = fieldset.appendChild(document.createElement("textarea"));
+											var photo_descrition = fieldset.appendChild(document.createElement("p"));
+											var photo = fieldset.appendChild(document.createElement("input"));
+
+											legend.innerText = "Etape" + steps.children.length + " :";
+											textarea.rows = "7";
+											textarea.id = "step" + steps.children.length;
+											photo_descrition.innerText = "Photo (optionnel) :";
+											photo.style.width = "100%";
+											photo.type = "url";
+											photo.id = "photo" + steps.children.length;
+										});
+										document.getElementById("SupprEtape").addEventListener("click", function() {
+											if( steps.children.length > 1 ) {
+												steps.lastChild.remove();
+											}
+										});
+									</script>
+								</div>
 							</div>
 						</div>
 					</div>
