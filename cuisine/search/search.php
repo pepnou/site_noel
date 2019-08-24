@@ -107,7 +107,7 @@
 											</div>
 										</div>
 									</fieldset>
-									<fieldset>
+									<!--<fieldset>
 										<legend>
 											Type de plat
 										</legend>
@@ -136,7 +136,7 @@
 												<label for="type">Catégorie</label>
 											</div>
 										</div>
-									</fieldset>
+									</fieldset>-->
 									<fieldset>
 										<legend>
 											Informations Générales

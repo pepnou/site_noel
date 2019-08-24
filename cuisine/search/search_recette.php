@@ -29,11 +29,11 @@
 		$sql_cond[] = ' ( r.idR = s.idR AND ( s.idS = '.implode(' OR s.idS = ', explode('|', $_POST['saison'])).' )) ';
 		$sql_from_part += ', se_prepare_en s';
 	}
-
+/*
 	if($_POST['type'] != -1) {
 		$sql_cond[] = ' ( r.type = \''.$_POST['type'].'\' ) ';
 	}
-
+*/
 	if($_POST['utilisateur'] != -1) {
 		$sql_cond[] = ' ( r.idU = '.$_POST['utilisateur'].' ) ';
 	}

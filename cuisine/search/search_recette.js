@@ -7,7 +7,7 @@ function getResultsR() { // Effectue une requête et récupère les résultats
 		ete = document.getElementById('ete'),
 		automne = document.getElementById('automne'),
 		hiver = document.getElementById('hiver'),
-		type = document.getElementById('type'),
+		//type = document.getElementById('type'),
 		utilisateur = document.getElementById('utilisateur'),
 		pays = document.getElementById('pays'),
 		facilite = document.getElementById('facilite'),
@@ -45,7 +45,7 @@ function getResultsR() { // Effectue une requête et récupère les résultats
 	var request =	'nom=' + nom.value + 
 					'&favori=' + favori.checked + 
 					'&saison=' + saison + 
-					'&type=' + type.value + 
+					//'&type=' + type.value + 
 					'&utilisateur=' + utilisateur.value + 
 					'&pays=' + pays.value + 
 					'&facilite=' + facilite.value + 
