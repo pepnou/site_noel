@@ -107,36 +107,6 @@
 											</div>
 										</div>
 									</fieldset>
-									<!--<fieldset>
-										<legend>
-											Type de plat
-										</legend>
-										<div>
-											<div>
-												<select name="type" id="type" onchange="getResultsR();">
-													<option value="-1"></option>
-													<?php
-														$sql = "SELECT DISTINCT r.type FROM recette r";
-
-														if (!$result = $mysqli->query($sql))
-														{
-													 		echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
-													 		exit;
-														}
-
-														while ($get_info = $result->fetch_row())
-														{
-															?>
-																<option value="<?php echo $get_info[0]; ?>"><?php echo $get_info[0]; ?></option>
-															<?php
-														}
-														$result->free();
-													?>
-												</select>
-												<label for="type">Catégorie</label>
-											</div>
-										</div>
-									</fieldset>-->
 									<fieldset>
 										<legend>
 											Informations Générales
@@ -273,17 +243,6 @@
 												<input type="hidden" name="tag" id="tag">
 											</div>
 										</fieldset>
-										<!--<fieldset>
-											<legend>
-												Autre
-											</legend>
-											<div>
-												<div>
-													<input type="checkbox" name="video" id="video" onchange="getResultsR();">
-													<label for="video">Video explicative</label>
-												</div>
-											</div>
-										</fieldset>-->
 									</fieldset>
 								</fieldset>
 							</form>

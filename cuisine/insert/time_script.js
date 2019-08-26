@@ -17,6 +17,7 @@ function plus(index, timestep) {
 }
 
 function update_temps(index) {
+	var time = '';
 	var heure = document.getElementById('heure' + index.toString());
 
 	heure.innerHTML = '';
@@ -25,25 +26,32 @@ function update_temps(index) {
 
 	tmp = Math.trunc(tmp);
 
-	if(tmp < 10)
+	if(tmp < 10) {
 		heure.innerHTML += '0' + tmp.toString() + 'h';
-	else
+		time += '0' + tmp.toString() + ':';
+	} else {
 		heure.innerHTML += tmp.toString() + 'h';
+		time += tmp.toString() + ':';
+	}
 
 	tmp = minute[index] % 60;
 
-	if(tmp < 10)
+	if(tmp < 10) {
 		heure.innerHTML += '0' + tmp.toString() + 'min';
-	else
+		time += '0' + tmp.toString() + ':';
+	} else {
 		heure.innerHTML += tmp.toString() + 'min';
+		time += tmp.toString() + ':';
+	}
 
-	document.getElementById('temps_prep').value = minute;
+	time += '00'
+
 	switch(index) {
 		case 0:
-			document.getElementById('temps_prep').value = minute[index];
+			document.getElementById('temps_prep').value = time;
 			break;
 		case 1:
-			document.getElementById('temps_cuis').value = minute[index];
+			document.getElementById('temps_cuis').value = time;
 			break;
 	}
 }

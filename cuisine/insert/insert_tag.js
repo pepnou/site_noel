@@ -34,6 +34,7 @@ function displayTag (response) {
 
 		checkbox.type = "checkbox";
 		checkbox.id = "tag-" + response[0];
+		checkbox.onclick = function(event) {tag_clicked(response[0])};
 
 		label.htmlFor = checkbox.id;
 		label.innerText = response[1];

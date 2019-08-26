@@ -105,7 +105,7 @@
 											}
 										?>
 										<div>
-											<p>Utilisateur : <?php echo $info_recette[15].' '.$info_recette[16]; ?></p>
+											<p>Utilisateur : <?php echo $info_recette[14].' '.$info_recette[15]; ?></p>
 										</div>
 										<?php
 											if($info_recette[6])
@@ -125,13 +125,10 @@
 									</legend>
 									<div>
 										<div>
-											<p>Catégorie : <?php echo $info_recette[9]; ?></p>
+											<p>Facilté : <?php echo $facilite[$info_recette[9]]; ?></p>
 										</div>
 										<div>
-											<p>Facilté : <?php echo $facilite[$info_recette[11]]; ?></p>
-										</div>
-										<div>
-											<p>Cout : <?php echo $cout[$info_recette[10]]; ?></p>
+											<p>Cout : <?php echo $cout[$info_recette[8]]; ?></p>
 										</div>
 									</div>
 								</fieldset>

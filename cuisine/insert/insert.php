@@ -16,7 +16,8 @@
 					<title>Tableau de bord</title>
 					<link rel="stylesheet" type="text/css" href="/site_noel/general/gen_style.css">
 					<link rel="stylesheet" type="text/css" href="./insert_style.css">
-					<script type="text/javascript" src="time_script.js"></script>
+					<script type="text/javascript" src="./time_script.js"></script>
+					<script type="text/javascript" src="./tags_script.js"></script>
 				</head>
 				<body>
 					<header>
@@ -41,7 +42,7 @@
 
 					<!--<a href="/site_noel/cuisine/insert/insert.php" style="width: 20%; margin-bottom: 10px;"><h2>Inserer</h2></a>-->
 					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;" id="insert">Inserer</h2>
-					<script type="text/javascript" src="./insert_recipe"></script>
+					<script type="text/javascript" src="./insert_recipe.js"></script>
 
 					<h1>Insertion de Recettes</h1>
 
@@ -65,6 +66,21 @@
 									</fieldset>
 									<fieldset>
 										<legend>
+											Quantité
+										</legend>
+										<div>
+											<div>
+												<label for="quantite_preparation">Pour : </label>
+												<input type="number" name="quantite_preparation" id="quantite_preparation">
+											</div>
+											<div>
+												<label for="unite_quantite">Unité : </label>
+												<input type="text" name="unite_quantite" id="unite_quantite" autocomplete="off">
+											</div>
+										</div>
+									</fieldset>
+									<fieldset>
+										<legend>
 											Temps
 										</legend>
 										<div style="width: max-content;">
@@ -75,7 +91,7 @@
 												<input type="button" value=" + " onclick="plus(0,5);">
 												<input type="button" value=" ++ " onclick="plus(0,30);">
 												<p> Temps de Réalisation</p>
-												<input type="hidden" name="temps_preparation" id="temps_prep" value="-1">
+												<input type="hidden" name="temps_preparation" id="temps_prep" value="01:00:00">
 											</div>
 											<div id="temps">
 												<p id="heure1">01h00min</p>
@@ -84,7 +100,7 @@
 												<input type="button" value=" + " onclick="plus(1,5);">
 												<input type="button" value=" ++ " onclick="plus(1,30);">
 												<p> Temps de Cuisson</p>
-												<input type="hidden" name="temps_prep" id="temps_cuis" value="-1">
+												<input type="hidden" name="temps_prep" id="temps_cuis" value="01:00:00">
 											</div>
 										</div>
 									</fieldset>
@@ -111,36 +127,6 @@
 											</div>
 										</div>
 									</fieldset>
-									<!--<fieldset>
-										<legend>
-											Type de plat
-										</legend>
-										<div>
-											<div>
-												<select name="type" id="type"">
-													<option value="-1"></option>
-													<?php
-														$sql = "SELECT DISTINCT r.type FROM recette r";
-
-														if (!$result = $mysqli->query($sql))
-														{
-													 		echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
-													 		exit;
-														}
-
-														while ($get_info = $result->fetch_row())
-														{
-															?>
-																<option value="<?php echo $get_info[0]; ?>"><?php echo $get_info[0]; ?></option>
-															<?php
-														}
-														$result->free();
-													?>
-												</select>
-												<label for="type">Catégorie</label>
-											</div>
-										</div>
-									</fieldset>-->
 									<fieldset>
 										<legend>
 											Informations Générales
@@ -153,6 +139,10 @@
 												<div>
 													<input type="text" name="pays" id="pays">
 													<label for="pays">Pays</label>
+												</div>
+												<div>
+													<input type="text" name="source" id="source">
+													<label for="source">Provenance</label>
 												</div>
 											</div>
 										</fieldset>
@@ -238,7 +228,7 @@
 														$tag_nom = $get_info[1];
 														?>
 															<div style="flex-direction: row;">
-																<input type="checkbox" <?php echo "id=\"$tag_id\""; ?> >
+																<input type="checkbox" <?php echo "id=\"$tag_id\" onclick=\"tag_clicked('$get_info[0]');\""; ?> >
 																<label for=<?php echo "$tag_id"; ?>><?php echo "$tag_nom"; ?></label>
 															</div>
 														<?php
@@ -246,11 +236,10 @@
 													$result->free();
 												?>
 											</div>
-											<!--<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">-->
+											<input type="hidden" id="ids_tags">
 											<input type="text" id="tag">
 											<input type="button" value="Ajouter un tag" id="AjoutTag">
 											<script type="text/javascript" src="./insert_tag.js"></script>
-											<!--</div>-->
 											<input type="hidden" name="tag" id="tag">
 										</fieldset>
 										<fieldset>

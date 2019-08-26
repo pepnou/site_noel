@@ -119,7 +119,7 @@
 
 			var quantity = div_quantity.appendChild(document.createElement('input'));
 			quantity.type = 'number';
-			quantity.id = 'quantity' + pos;
+			quantity.id = 'quantity' + ids[pos];
 			quantity.style = 'width: 30px;'
 
 			var unit_label = div_unit.appendChild(document.createElement('p'));
@@ -128,7 +128,7 @@
 			var unit = div_unit.appendChild(document.createElement('input'));
 			unit.type = 'text';
 			unit.size = '7';
-			unit.id = 'unit' + pos;
+			unit.id = 'unit' + ids[pos];
 
 			var button = div_ingredient.appendChild(document.createElement('input'));
 			button.type = 'button';
