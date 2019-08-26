@@ -31,8 +31,8 @@
 	
 	function displayResults(response) { // Affiche les résultats d'une requête
 
-		console.log(response);
-		console.log(response.length);
+		//console.log(response);
+		//console.log(response.length);
 	
 		results.style.display = (response.length > 4) ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
 	

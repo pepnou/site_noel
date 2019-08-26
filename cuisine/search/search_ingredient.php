@@ -15,7 +15,7 @@
 
 		mysqli_set_charset($mysqli, "utf8");
 
-		$tmp = $_GET['s'];
+		$tmp = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_GET['s'])));
 		$sql = "SELECT * FROM ingredient i WHERE i.nom LIKE '%$tmp%'";
 		
 		$result = $mysqli->query($sql);

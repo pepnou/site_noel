@@ -11,11 +11,11 @@ document.getElementById('insert_ingredient').addEventListener("click", function(
 
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-		console.log(xhr.responseText);
+			console.log(xhr.responseText);
 		}
-		});
+	});
 
-		xhr.send(request);
+	xhr.send(request);
 
-		return xhr;
+	return xhr;
 });

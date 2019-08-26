@@ -40,12 +40,13 @@
 
 
 					<!--<a href="/site_noel/cuisine/insert/insert.php" style="width: 20%; margin-bottom: 10px;"><h2>Inserer</h2></a>-->
-					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;">Inserer</h2>
+					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;" id="insert">Inserer</h2>
+					<script type="text/javascript" src="./insert_recipe"></script>
 
 					<h1>Insertion de Recettes</h1>
 
 					<div id="contenu">
-						<div id="Filtres">
+						<div id="Filtres" style="width: min-content;">
 							<form action="#">
 								<fieldset>
 									<legend>
@@ -66,7 +67,7 @@
 										<legend>
 											Temps
 										</legend>
-										<div>
+										<div style="width: max-content;">
 											<div id="temps">
 												<p id="heure0">01h00min</p>
 												<input type="button" value=" -- " onclick="minus(0,30);">
@@ -221,7 +222,7 @@
 											<legend>
 												Tag
 											</legend>
-											<div>
+											<div style="flex-direction: row; flex-wrap: wrap; width: initial;" id="tags">
 												<?php
 													$sql = 'SELECT * FROM tag';
 
@@ -236,22 +237,53 @@
 														$tag_id = "tag-".$get_info[0];
 														$tag_nom = $get_info[1];
 														?>
-															<div>
-																<input type="checkbox" <?php echo "name=\"$tag_id\" id=\"$tag_id\" onclick=\"tag_clicked('$get_info[0]');\""; ?> >
+															<div style="flex-direction: row;">
+																<input type="checkbox" <?php echo "id=\"$tag_id\""; ?> >
 																<label for=<?php echo "$tag_id"; ?>><?php echo "$tag_nom"; ?></label>
 															</div>
 														<?php
 													}
 													$result->free();
 												?>
-												<input type="hidden" name="tag" id="tag">
+											</div>
+											<!--<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">-->
+											<input type="text" id="tag">
+											<input type="button" value="Ajouter un tag" id="AjoutTag">
+											<script type="text/javascript" src="./insert_tag.js"></script>
+											<!--</div>-->
+											<input type="hidden" name="tag" id="tag">
+										</fieldset>
+										<fieldset>
+											<legend>
+												Photos (url)
+											</legend>
+											<div id="photos">
+											</div>
+											<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">
+												<input type="button" value="Ajouter une photo" id="AjoutPhoto">
+												<input type="button" value="Retirer une photo" id="SupprPhoto">
+												<script type="text/javascript">
+													var photos = document.getElementById("photos");
+
+													document.getElementById("AjoutPhoto").addEventListener("click", function() {
+														var photo = photos.appendChild(document.createElement("input"));
+
+														photo.type = "url";
+														photo.id = "photo" + photos.children.length;
+													});
+													document.getElementById("SupprPhoto").addEventListener("click", function() {
+														if( photos.children.length > 0 ) {
+															photos.lastChild.remove();
+														}
+													});
+												</script>
 											</div>
 										</fieldset>
 									</fieldset>
 								</fieldset>
 							</form>
 						</div>
-						<div id="resultats">
+						<div id="preparation">
 							<h2>Réalisation</h2>
 							<div id="realisation">
 								<div id="steps">
@@ -261,7 +293,7 @@
 										</legend>
 										<textarea rows="7"></textarea>
 										<p>Photo (optionnel) :</p>
-										<input style="width: 100%;" type="url" id="photo1">
+										<input style="width: 100%;" type="url" id="stepPhoto1">
 									</fieldset>
 								</div>
 								<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">
@@ -277,13 +309,13 @@
 											var photo_descrition = fieldset.appendChild(document.createElement("p"));
 											var photo = fieldset.appendChild(document.createElement("input"));
 
-											legend.innerText = "Etape" + steps.children.length + " :";
+											legend.innerText = "Etape " + steps.children.length + " :";
 											textarea.rows = "7";
 											textarea.id = "step" + steps.children.length;
 											photo_descrition.innerText = "Photo (optionnel) :";
 											photo.style.width = "100%";
 											photo.type = "url";
-											photo.id = "photo" + steps.children.length;
+											photo.id = "stepPhoto" + steps.children.length;
 										});
 										document.getElementById("SupprEtape").addEventListener("click", function() {
 											if( steps.children.length > 1 ) {

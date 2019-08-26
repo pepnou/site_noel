@@ -17,17 +17,17 @@
 	$sql_from_part = 'recette r';
 
 	if($_POST['nom'] != '') {
-		$sql_cond[] = ' ( r.nom LIKE \'%'.$_POST['nom'].'%\' ) ';
+		$sql_cond[] = ' ( r.nom LIKE \'%'.mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['nom']))).'%\' ) ';
 	}
 
 	if($_POST['favori'] == 'true') {
 		$sql_cond[] = ' ( r.idR = f.idR AND f.idU = 1 ) ';
-		$sql_from_part += ', favori f';
+		$sql_from_part .= ', favori f';
 	}
 
 	if($_POST['saison'] != '') {
 		$sql_cond[] = ' ( r.idR = s.idR AND ( s.idS = '.implode(' OR s.idS = ', explode('|', $_POST['saison'])).' )) ';
-		$sql_from_part += ', se_prepare_en s';
+		$sql_from_part .= ', se_prepare_en s';
 	}
 /*
 	if($_POST['type'] != -1) {

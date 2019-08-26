@@ -12,8 +12,10 @@
 
 		mysqli_set_charset($mysqli, "utf8");
 
+		$nom_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['nom_ingredient'])));
+		$image_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['image_ingredient'])));
 
-		$sql = 'SELECT DISTINCT i.nom FROM ingredient i WHERE i.nom=\''.$_POST['nom_ingredient'].'\'';
+		$sql = 'SELECT DISTINCT i.nom FROM ingredient i WHERE i.nom=\''.$nom_ingredient.'\'';
 		if (!$result = $mysqli->query($sql))
 		{
 	 		echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
@@ -26,9 +28,9 @@
 
 
 		if($_POST['image_ingredient'] != '') {
-			$query = 'INSERT INTO ingredient(nom, photo) VALUES (\''.$_POST['nom_ingredient'].'\',\''.$_POST['image_ingredient'].'\')';
+			$query = 'INSERT INTO ingredient(nom, photo) VALUES (\''.$nom_ingredient.'\',\''.$image_ingredient.'\')';
 		} else {
-			$query = 'INSERT INTO ingredient(nom) VALUES (\''.$_POST['nom_ingredient'].'\')';
+			$query = 'INSERT INTO ingredient(nom) VALUES (\''.$nom_ingredient.'\')';
 		}
 
 

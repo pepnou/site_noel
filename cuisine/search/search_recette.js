@@ -73,6 +73,7 @@ function displayResultsR(response) { // Affiche les résultats d'une requête
 	results.innerHTML = ''; // On vide les résultats
 
     if (response != '') { // On ne modifie les résultats si on en a obtenu
+    	console.log(response);
 
         response = response.split('||');
         response[0] = response[0].split('|');
