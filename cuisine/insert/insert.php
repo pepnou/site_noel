@@ -75,7 +75,7 @@
 											</div>
 											<div>
 												<label for="unite_quantite">Unité : </label>
-												<input type="text" name="unite_quantite" id="unite_quantite" autocomplete="off">
+												<input type="text" name="unite_quantite" id="unite_quantite" autocomplete="off" value="Personne">
 											</div>
 										</div>
 									</fieldset>

@@ -112,7 +112,7 @@
 											{
 												?>
 													<div>
-														<p>Source : <?php echo $info_recette[6]; ?></p>
+														<p>Provenance : <?php echo $info_recette[6]; ?></p>
 													</div>
 												<?php
 											}
