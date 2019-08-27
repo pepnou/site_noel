@@ -42,7 +42,7 @@ function insert_recipe() {
 
 	var tags_array = [];
 	tags_array.push(ids_tags.value.split("|").length);
-	tags_array.push(ids_tags.value.split("|"));
+	Array.prototype.push.apply(tags_array, ids_tags.value.split("|"));
 	tags_array = tags_array.join("|");
 
 
@@ -56,11 +56,12 @@ function insert_recipe() {
 	photos_array = photos_array.join('|');
 
 	var steps_array = [];
-	steps_array.push(steps.children.length)
+	steps_array.push(0);
 	for (var i = 0; i < steps.children.length; i++) {
 		if(steps.children[i].children[1].value.length > 0) {
 			steps_array.push(encodeURIComponent(steps.children[i].children[1].value));
 			steps_array.push(encodeURIComponent(steps.children[i].children[3].value));
+			steps_array[0]++;
 		}
 	}
 	steps_array = steps_array.join('|');
