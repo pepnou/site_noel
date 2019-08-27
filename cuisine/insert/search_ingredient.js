@@ -121,6 +121,8 @@
 			quantity.type = 'number';
 			quantity.id = 'quantity' + ids[pos];
 			quantity.style = 'width: 30px;'
+			quantity.value = "0";
+			quantity.min = "0";
 
 			var unit_label = div_unit.appendChild(document.createElement('p'));
 			unit_label.innerText = 'Unité : ';

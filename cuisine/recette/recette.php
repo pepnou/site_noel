@@ -261,7 +261,7 @@
 																<?php
 															}
 														?>
-														<p><?php echo $get_info[2]; ?></p>
+														<p><?php echo /*$get_info[2];*/str_replace("\n", "<br>", $get_info[2]); ?></p>
 													</div>
 												</div>
 											</fieldset>

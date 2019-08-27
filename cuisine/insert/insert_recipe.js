@@ -18,7 +18,23 @@ function insert_recipe() {
 		ids_tags = document.getElementById('ids_tags'),
 		photos = document.getElementById('photos'),
 		steps = document.getElementById('steps');
+
+	var error = document.getElementById('error');
 	
+	if(nom.value.length == 0) {
+		error.innerText = "Un nom doit être spécifié pour la recette.";
+		return;
+	}
+	if(quantite.value == 0) {
+		error.innerText = "Une quantité supérieure a 0 doit être spécifiée.";
+		return;
+	}
+	if(unite.value.length == 0) {
+		error.innerText = "Une unité pour la quantité doit être spécifiée.";
+		return;
+	}
+
+
 	var saison = [];
 	saison.push(0);
 	if(printemps.checked) {
@@ -37,13 +53,38 @@ function insert_recipe() {
 		saison.push(4);
 		saison[0]++;
 	}
+	if(saison[0] == 0) {
+		error.innerText = "Une recette doit pourvoir être préparée pendant au moins une saison.";
+		return;
+	}
 	saison = saison.join('|');
 
 
+
+	if(facilite.value == -1) {
+		error.innerText = "Une facilité de préparation approximative doit être spécifiée.";
+		return;
+	}
+	if(cout.value == -1) {
+		error.innerText = "Un cout de préparation approximatif doit être spécifié.";
+		return;
+	}
+	if(ing_choisis.children.length == 0) {
+		error.innerText = "Une recette doit au moins comporter un ingredient.";
+		return;
+	}	
+
+
+
 	var tags_array = [];
-	tags_array.push(ids_tags.value.split("|").length);
-	Array.prototype.push.apply(tags_array, ids_tags.value.split("|"));
+	if(ids_tags.value.length == 0) {
+		tags_array.push(0);
+	} else {
+		tags_array.push(ids_tags.value.split("|").length);
+		Array.prototype.push.apply(tags_array, ids_tags.value.split("|"));
+	}
 	tags_array = tags_array.join("|");
+
 
 
 	var photos_array = [];
@@ -55,6 +96,27 @@ function insert_recipe() {
 	}
 	photos_array = photos_array.join('|');
 
+
+	var ingredients_array = [];
+	ingredients_array.push(ing_choisis.children.length);
+	for (var i = 0; i < ing_choisis.children.length; i++) {
+		console.log(ing_choisis.children[i].children[1].children[0].children[1].value);
+		if(ing_choisis.children[i].children[1].children[0].children[1].value == 0) {
+			error.innerText = "Chaque ingrédient doit comporter une quantité supérieure à 0.";
+			return;
+		}
+		ingredients_array.push(ing_choisis.children[i].children[1].children[0].children[1].id.slice("quantity".length));
+		ingredients_array.push(ing_choisis.children[i].children[1].children[0].children[1].value);
+		ingredients_array.push(encodeURIComponent(ing_choisis.children[i].children[1].children[1].children[1].value));
+	}
+	ingredients_array = ingredients_array.join('|');
+
+
+	if(steps.children[0].children[1].value.length == 0) {
+		error.innerText = "Une recette doit au moins comporter une étape non vide.";
+		return;
+	}
+
 	var steps_array = [];
 	steps_array.push(0);
 	for (var i = 0; i < steps.children.length; i++) {
@@ -65,16 +127,6 @@ function insert_recipe() {
 		}
 	}
 	steps_array = steps_array.join('|');
-
-
-	var ingredients_array = [];
-	ingredients_array.push(ing_choisis.children.length);
-	for (var i = 0; i < ing_choisis.children.length; i++) {
-		ingredients_array.push(ing_choisis.children[i].children[1].children[0].children[1].id.slice("quantity".length));
-		ingredients_array.push(ing_choisis.children[i].children[1].children[0].children[1].value);
-		ingredients_array.push(encodeURIComponent(ing_choisis.children[i].children[1].children[1].children[1].value));
-	}
-	ingredients_array = ingredients_array.join('|');
 
 
 	var xhr = new XMLHttpRequest();
@@ -96,7 +148,7 @@ function insert_recipe() {
 					'&photos=' + photos_array +
 					'&steps=' + steps_array;
 
-	console.log(request);
+	//console.log(request);
 
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {

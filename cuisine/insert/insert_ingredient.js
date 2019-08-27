@@ -6,8 +6,8 @@ document.getElementById('insert_ingredient').addEventListener("click", function(
 	xhr.open('POST', './insert_ingredient.php');
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-	var request =	'nom_ingredient=' + nom_ingredient.value + 
-					'&image_ingredient=' + image_ingredient.value;
+	var request =	'nom_ingredient=' + encodeURIComponent(nom_ingredient.value) + 
+					'&image_ingredient=' + encodeURIComponent(image_ingredient.value);
 
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {

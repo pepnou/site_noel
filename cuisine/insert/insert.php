@@ -43,6 +43,7 @@
 					<!--<a href="/site_noel/cuisine/insert/insert.php" style="width: 20%; margin-bottom: 10px;"><h2>Inserer</h2></a>-->
 					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;" id="insert">Inserer</h2>
 					<script type="text/javascript" src="./insert_recipe.js"></script>
+					<p id="error"></p>
 
 					<h1>Insertion de Recettes</h1>
 
@@ -71,7 +72,7 @@
 										<div>
 											<div>
 												<label for="quantite_preparation">Pour : </label>
-												<input type="number" name="quantite_preparation" id="quantite_preparation">
+												<input type="number" name="quantite_preparation" id="quantite_preparation" min="0" value="0">
 											</div>
 											<div>
 												<label for="unite_quantite">Unité : </label>

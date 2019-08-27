@@ -12,8 +12,8 @@
 
 		mysqli_set_charset($mysqli, "utf8");
 
-		$nom_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['nom_ingredient'])));
-		$image_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['image_ingredient'])));
+		$nom_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($_POST['nom_ingredient']))));
+		$image_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($_POST['image_ingredient']))));
 
 		$sql = 'SELECT DISTINCT i.nom FROM ingredient i WHERE i.nom=\''.$nom_ingredient.'\'';
 		if (!$result = $mysqli->query($sql))
