@@ -186,28 +186,40 @@
 											<div id="ing_result" class="ingredient_selection"></div>
 											<div id="ing_choisis" class="ingredient_selection"></div>
 											<input type="hidden" name="ids_ing" id="ids_ing">
+
+
+											<div style="display: none;" id="insert_ingredient_form">
+												<div style="display: flex; flex-direction: column;">
+													<div style="display: flex; flex-direction: row; justify-content: space-around;">
+														<label for="ingredient_photo">Image (url) : </label>
+														<input type="text">
+													</div>
+													<input type="button" value="Ajouter ingredient">
+												</div>
+											</div>
+
 											<script type="text/javascript" src="./search_ingredient.js"></script>
-											<fieldset style="margin-top: 10px;">
+
+
+											<!--<fieldset style="margin-top: 10px;">
 												<legend>
 													Ajout d'ingredient
 												</legend>
-													<form action="#">
+													<div>
 														<div>
-															<div>
-																<input type="text" name="nom_ingredient" id="nom_ingredient">
-																<label>Nom</label>
-															</div>
-															<div>
-																<input type="url" name="image_ingredient" id="image_ingredient">
-																<label>Image (url)</label>
-															</div>
-															<div>
-																<input type="button" value="Ajouter" id="insert_ingredient">
-																<script type="text/javascript" src="./insert_ingredient.js"></script>
-															</div>
+															<input type="text" name="nom_ingredient" id="nom_ingredient">
+															<label>Nom</label>
 														</div>
-													</form>
-											</fieldset>
+														<div>
+															<input type="url" name="image_ingredient" id="image_ingredient">
+															<label>Image (url)</label>
+														</div>
+														<div>
+															<input type="button" value="Ajouter" id="insert_ingredient">
+															<script type="text/javascript" src="./insert_ingredient.js"></script>
+														</div>
+													</div>
+											</fieldset>-->
 										</fieldset>
 										<fieldset>
 											<legend>

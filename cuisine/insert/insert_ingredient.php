@@ -1,6 +1,9 @@
 <?php
 	session_start();
 
+	//echo $_POST['nom_ingredient'];
+	//echo $_POST['image_ingredient'];
+
 	if($_POST['nom_ingredient'] != '') {
 		$mysqli = new mysqli('localhost', 'root', '', 'mydb');
 

@@ -127,7 +127,8 @@ label, #temps > p
 {
 	position: absolute;
 	display: none;
-	width: 228px;
+	/*width: 228px;*/
+	width: min-content;
 	border: 1px solid #AAA;
 	border-top-width: 0;
 	background-color: #FFF;
@@ -135,7 +136,7 @@ label, #temps > p
 
 #nom_result div, #ing_result div
 {
-	width: 220px;
+	/*width: 220px;*/
 	padding: 2px 4px;
 	text-align: left;
 	border: 0;

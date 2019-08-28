@@ -3,6 +3,7 @@
 		results = document.getElementById('ing_result'),
 		choisis = document.getElementById('ing_choisis'),
 		ids_ing = document.getElementById('ids_ing'),
+		insert_ingredient_form = document.getElementById('insert_ingredient_form'),
 		selectedResult = -1, // Permet de savoir quel résultat est sélectionné : -1 signifie "aucune sélection"
 		previousRequest, // On stocke notre précédente requête dans cette variable
 		previousValue = searchElement.value; // On fait de même avec la précédente valeur
@@ -34,10 +35,11 @@
 		//console.log(response);
 		//console.log(response.length);
 	
-		results.style.display = (response.length > 4) ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
+		results.style.display = (response.length > 4 || searchElement.value.length > 0) ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
 	
-		if (response.length > 4) { // On ne modifie les résultats que si on en a obtenu
+		results.innerHTML = ''; // On vide les résultats
 
+		if (response.length > 4) { // On ne modifie les résultats que si on en a obtenu
 			response = response.split('||');
 			response[0] = response[0].split('|');
 			response[1] = response[1].split('|');
@@ -47,8 +49,6 @@
 
 			var responseLen = response[0].length;
 
-			results.innerHTML = ''; // On vide les résultats
-	
 			for (var i = 0, div ; i < responseLen ; i++) {
 	
 				div = results.appendChild(document.createElement('div'));
@@ -60,16 +60,47 @@
 				}
 
 				div.innerHTML += '<p>' + response[1][i] + '</p>';
-				//div.innerHTML += '<input style="width: 30px;" type="number" name="' + 'quantity' + i + '" id="' + 'quantity' + i + '">';
-				//div.innerHTML += '<input type="text" size="5" name="' + 'unit' + i + '" id="' + 'unit' + i + '">';
-
 	
 				div.addEventListener('click', function(e) {
 					chooseResult(e.target);
 				});
-	
 			}
-	
+		}
+
+		if(searchElement.value.length > 0) {
+			div = results.appendChild(document.createElement('div'));
+			//console.log(insert_ingredient_form);
+			div.innerHTML = insert_ingredient_form.innerHTML;
+			div.style = "width: max-content;"
+
+			div.children[0].children[1].addEventListener("click", function(e) {
+				var nom_ingredient = searchElement.value,
+				image_ingredient = e.target.parentNode.children[0].children[1].value;
+
+				//console.log(nom_ingredient);
+				//console.log(image_ingredient);
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', './insert_ingredient.php');
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+				var request =	'nom_ingredient=' + encodeURIComponent(nom_ingredient) + 
+								'&image_ingredient=' + encodeURIComponent(image_ingredient);
+
+				xhr.addEventListener('readystatechange', function() {
+					if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+						console.log(xhr.responseText);
+
+						if(xhr.responseText != "Allready inserted") {
+							searchElement.value = '';
+							results.style.display = 'none'; // On cache le conteneur si on n'a pas de résultats
+						}
+					}
+				});
+				xhr.send(request);				
+
+				return xhr;
+			});
 		}
 	
 	}
@@ -85,25 +116,8 @@
 		var pos = divs.indexOf(result);
 
 		if(!ingredients.find(function(element) {
-			return element == ids[pos];
-		})) {
-			/*var div = choisis.appendChild(document.createElement('div'));
-			div.innerHTML = result.innerHTML;
-
-			var quantity = div.appendChild(document.createElement('input'));
-			quantity.type = 'number';
-			quantity.id = 'quantity' + pos;
-			quantity.style = 'width: 30px;'
-
-			var unit = div.appendChild(document.createElement('input'));
-			unit.type = 'text';
-			unit.size = '7';
-			unit.id = 'unit' + pos;
-
-			var button = div.appendChild(document.createElement('input'));
-			button.type = 'button';
-			button.value = ' - ';
-			button.id = 'id_ing'+ids[pos];*/
+				return element == ids[pos];
+			})) {
 
 			var div = choisis.appendChild(document.createElement('div'));
 
