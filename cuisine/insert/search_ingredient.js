@@ -72,10 +72,13 @@
 			//console.log(insert_ingredient_form);
 			div.innerHTML = insert_ingredient_form.innerHTML;
 			div.style = "width: max-content;"
+			div.id = "ingredient_form";
 
-			div.children[0].children[1].addEventListener("click", function(e) {
+			div.children[0].children[1].addEventListener("click", function() {
+				var form = document.getElementById("ingredient_form");
+
 				var nom_ingredient = searchElement.value,
-				image_ingredient = e.target.parentNode.children[0].children[1].value;
+				image_ingredient = form.children[0].children[0].children[1].value;
 
 				//console.log(nom_ingredient);
 				//console.log(image_ingredient);
@@ -94,11 +97,22 @@
 						if(xhr.responseText != "Allready inserted") {
 							searchElement.value = '';
 							results.style.display = 'none'; // On cache le conteneur si on n'a pas de résultats
+
+
+							div = choisis.appendChild(document.createElement('div'));
+
+							if(image_ingredient == '') {
+								div.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png">';
+							} else {
+								div.innerHTML = '<img src="' + image_ingredient + '">';
+							}
+
+							div.innerHTML += '<p>' + nom_ingredient.charAt(0).toUpperCase() + nom_ingredient.slice(1).toLowerCase() + '</p>';
 						}
 					}
 				});
-				xhr.send(request);				
 
+				xhr.send(request);
 				return xhr;
 			});
 		}
@@ -194,7 +208,7 @@
 	
 		}
 	
-		else if (e.keyCode == 40 && selectedResult < divs.length - 1) { // Si la touche pressée est la flèche "bas"
+		else if (e.keyCode == 40 && selectedResult < results.children.length - 2) { // Si la touche pressée est la flèche "bas"
 	
 			results.style.display = 'block'; // On affiche les résultats
 	

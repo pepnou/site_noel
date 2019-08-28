@@ -198,28 +198,7 @@
 												</div>
 											</div>
 
-											<script type="text/javascript" src="./search_ingredient.js"></script>
-
-
-											<!--<fieldset style="margin-top: 10px;">
-												<legend>
-													Ajout d'ingredient
-												</legend>
-													<div>
-														<div>
-															<input type="text" name="nom_ingredient" id="nom_ingredient">
-															<label>Nom</label>
-														</div>
-														<div>
-															<input type="url" name="image_ingredient" id="image_ingredient">
-															<label>Image (url)</label>
-														</div>
-														<div>
-															<input type="button" value="Ajouter" id="insert_ingredient">
-															<script type="text/javascript" src="./insert_ingredient.js"></script>
-														</div>
-													</div>
-											</fieldset>-->
+											<script type="text/javascript" src="./search_ingredient2.js"></script>
 										</fieldset>
 										<fieldset>
 											<legend>
