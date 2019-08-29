@@ -166,7 +166,7 @@
 												?>
 													<div>
 														<?php
-															if($get_info[1])
+															if($get_info[1] != "")
 															{
 																?>
 																	<img src="<?php echo $get_info[1]; ?>">
@@ -175,7 +175,7 @@
 															else
 															{
 																?>
-																	<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png">
+																	<img src="/site_noel/general/Empty.png">
 																<?php
 															}
 														?>

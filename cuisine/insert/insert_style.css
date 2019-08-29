@@ -88,21 +88,6 @@ fieldset > div > *
 	margin-top: 5px;
 }
 
-
-
-input[type="checkbox"]
-{
-	border: 10px solid rgba(170,100,30,0.90); 
-	background-color: rgba(210,130,40,0.90);
-}
-
-input[type="text"]
-{
-	padding: 3px;
-}
-
-
-
 label, #temps > p
 {
 	margin-left: 5px;
@@ -249,18 +234,4 @@ textarea
 {
 	resize: vertical;
 	width: 100%;
-}
-
-input[type="button"]
-{
-	padding: 3px 10px 3px 10px;
-
-	border: 3px solid rgba(170,100,30,0.90);
-	border-radius: 5px 20px;
-
-	background-color: rgba(210,130,40,0.90);
-
-	text-align: center;
-
-	cursor: pointer;
 }

@@ -16,7 +16,7 @@
 		mysqli_set_charset($mysqli, "utf8");
 
 		$tmp = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_GET['s'])));
-		$sql = "SELECT * FROM ingredient i WHERE i.nom LIKE '%$tmp%'";
+		$sql = "SELECT * FROM ingredient i WHERE i.nom LIKE '%$tmp%' ORDER BY i.nom ASC";
 		
 		$result = $mysqli->query($sql);
 

@@ -90,19 +90,6 @@ fieldset > div > *
 
 
 
-input[type="checkbox"]
-{
-	border: 10px solid rgba(170,100,30,0.90); 
-	background-color: rgba(210,130,40,0.90);
-}
-
-input[type="text"]
-{
-	padding: 3px;
-}
-
-
-
 label, #temps > p
 {
 	margin-left: 5px;
@@ -208,12 +195,14 @@ label, #temps > p
 	flex-wrap: wrap;
 
 	margin-right: 25px;
-	margin-top: 25px;
 }
 
 #recette > div
 {
+	/*cursor: pointer;*/
+
 	margin-left: 25px;
+	margin-top: 25px;
 
 	border: 1px solid rgba(170,100,30,0.90);
 	box-shadow: 0px 2px 2px 0px;
@@ -224,6 +213,11 @@ label, #temps > p
 #recette > div > a > div
 {
 	padding: 10px 5px 10px 5px;
+	width: min-content;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 #recette > div > a > div > img
@@ -237,4 +231,9 @@ label, #temps > p
 	height: 200px;
 
 	margin-top: 5px;
+}
+
+#recette > div > a > div > p
+{
+	word-break: break-word;
 }

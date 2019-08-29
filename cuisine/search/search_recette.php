@@ -86,7 +86,8 @@
 
 	$sql = "SELECT DISTINCT r.idR, r.nom
 			FROM $sql_from_part
-			$sql_where_part";
+			$sql_where_part
+			ORDER BY r.nom ASC";
 
 	//echo $sql;
 

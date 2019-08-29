@@ -77,7 +77,54 @@ body
 
 
 
+input[type="checkbox"]
+{
+	border: 10px solid rgba(170,100,30,0.90); 
+	background-color: rgba(210,130,40,0.90);
+}
 
+input[type="text"]
+{
+	padding: 3px;
+}
+
+input[type="url"]
+{
+	padding: 3px;
+}
+
+input[type="password"]
+{
+	padding: 3px;
+}
+
+input[type="button"]
+{
+	padding: 3px 10px 3px 10px;
+
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+
+	cursor: pointer;
+}
+
+input[type="submit"]
+{
+	padding: 3px 10px 3px 10px;
+
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+
+	cursor: pointer;
+}
 
 
 

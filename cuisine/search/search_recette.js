@@ -1,3 +1,5 @@
+window.onresize = update_height;
+
 
 function getResultsR() { // Effectue une requête et récupère les résultats
 		
@@ -72,30 +74,61 @@ function displayResultsR(response) { // Affiche les résultats d'une requête
 
 	results.innerHTML = ''; // On vide les résultats
 
-    if (response != '') { // On ne modifie les résultats si on en a obtenu
-    	console.log(response);
+	if (response != '') { // On ne modifie les résultats si on en a obtenu
+		console.log(response);
 
-        response = response.split('||');
-        response[0] = response[0].split('|');
-        response[1] = response[1].split('|');
-        response[2] = response[2].split('|');
+		response = response.split('||');
+		response[0] = response[0].split('|');
+		response[1] = response[1].split('|');
+		response[2] = response[2].split('|');
 
-        var responseLen = response[0].length;
+		var responseLen = response[0].length;
 
-        for (var i = 0, div ; i < responseLen ; i++) {
+		for (var i = 0, div ; i < responseLen ; i++) {
 
-        	div = results.appendChild(document.createElement('div'));
-        	div.className = '';
+			div = results.appendChild(document.createElement('div'));
+			div.className = '';
 
-        	if(response[2][i] == 'NULL')
-        		div.innerHTML = '<a href="../recette/recette.php?id='+response[0][i]+'"><div><p>'+response[1][i]+'</p><img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"></div></a>';
-        	else
-        	{
-        		//console.log(response[2][i]);
-        		div.innerHTML = '<a href="../recette/recette.php?id='+response[0][i]+'"><div><p>'+response[1][i]+'</p><img src="'+response[2][i]+'"></div></a>';
-        	}
-        }
-    }
+			var id = response[0][i];
+			var name = response[1][i];
+			var image;
+			if(response[2][i] == 'NULL') {
+				image = "/site_noel/general/Empty.png"
+			}
+			else {
+				image = response[2][i];
+			}
+
+			var link = div.appendChild(document.createElement('a'));
+			var div_int = link.appendChild(document.createElement('div'));
+			var nameElement = div_int.appendChild(document.createElement('p'));
+			var imageElement = div_int.appendChild(document.createElement('img'));
+
+			link.href = '/site_noel/cuisine/recette/recette.php?id=' + id;
+			nameElement.innerText = name;
+			imageElement.src = image;
+		}
+
+		update_height();
+	}
 
 }
 
+function update_height() {
+	console.log("updating");
+
+	var results = document.getElementById('recette');
+	for (var i = 0; i < results.children.length; i++) {
+		var div = results.children[i];
+		var div_int = div.children[0].children[0];
+
+		div_int.style.height = "unset";
+	}
+	for (var i = 0; i < results.children.length; i++) {
+		var div = results.children[i];
+		var div_int = div.children[0].children[0];
+
+		var height = (div.offsetHeight - 20 - 2).toString() + "px";
+		div_int.style.height = height;
+	}	
+}
