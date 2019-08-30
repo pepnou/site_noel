@@ -189,7 +189,8 @@
 
 
 										<?php
-											$sql = 'SELECT DISTINCT i.nom, i.photo, c.quantite, c.unite, c.category FROM contient c, ingredient i WHERE c.idI = i.idI AND c.idR = '.$_GET['id'];
+											$idR = $_GET['id'];
+											$sql = "SELECT DISTINCT i.nom, i.photo, c.quantite, c.unite, c.category FROM contient c, ingredient i WHERE c.idI = i.idI AND c.idR = $idR ORDER BY c.idR ASC, c.idC ASC";
 
 											if (!$result = $mysqli->query($sql)) {
 												echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
