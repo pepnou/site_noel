@@ -5,36 +5,6 @@ var quantite_ini;
 var photo = [];
 var photo_act = 0;
 
-/*function setup_ing(quantite) {
-	ingredients.push(quantite);
-}*/
-
-/*function setup_pers(nbr) {
-	personnes = nbr;
-}*/
-
-/*function ing_min() {
-	if(personnes > 1)
-	{
-		for (var i = ingredients.length - 1; i >= 0; i--) {
-			ingredients[i] = ingredients[i]/personnes * ( personnes - 1 );
-			document.getElementById('i'+i).innerHTML = ingredients[i];
-		}
-		personnes--;
-		document.getElementById('ing').innerHTML = personnes;
-	}
-}
-
-function ing_plus() {
-	for (var i = ingredients.length - 1; i >= 0; i--) {
-		ingredients[i] = ingredients[i]/personnes * ( personnes + 1 );
-		document.getElementById('i'+i).innerHTML = ingredients[i];
-	}
-	personnes++;
-	document.getElementById('ing').innerHTML = personnes;
-}*/
-
-
 function setup_ing(quantite) {
 	ingredients.push(quantite/quantite_ini);
 }
@@ -58,8 +28,6 @@ function ing_change() {
 		}
 	}
 }
-
-
 
 function setup_photo(url_photo) {
 	photo.push(url_photo);
@@ -120,4 +88,54 @@ function photo_load() {
 	console.log(r);
 	console.log(max_h);
 	console.log(max_w);
+}
+
+var ing_index = 0;
+function display_ingredient(nom, photo, quantite, unite, category) {
+	var ing = document.getElementById("ingredient");
+
+	var cat;
+	if(category.length == 0) {
+		cat = ing;
+	} else {
+		var cat = document.getElementById("category" + category);
+
+		if(cat == null) {
+			cat = ing.appendChild(document.createElement("fieldset"));
+			var legend = cat.appendChild(document.createElement("legend"));
+
+			cat.id = "category" + category;
+			legend.innerHTML = category;
+		}
+	}
+
+	var div1 = cat.appendChild(document.createElement("div"));
+	var div2 = div1.appendChild(document.createElement("div"));
+
+	var img = div2.appendChild(document.createElement("img"));
+	var p1 = div2.appendChild(document.createElement("p"));
+	var p2 = div2.appendChild(document.createElement("p"));
+	var p3 = div2.appendChild(document.createElement("p"));
+
+	img.src = photo;
+
+	p1.innerText = nom;
+	p2.innerText = quantite;
+	p2.id = "i" + ing_index;
+	p3.innerText = unite;
+
+	setup_ing(quantite);
+
+				/*
+				<img src="<?php echo $get_info[1]; ?>">
+
+				<p><?php echo $get_info[0]; ?></p>
+				<p id="<?php echo 'i'.$i; ?>"><?php echo $get_info[2]; ?></p>
+				<p><?php echo ' '.$get_info[3]; ?></p>
+
+				<script type="text/javascript">
+					setup_ing(<?php echo $get_info[2]; ?>);
+				</script>
+				*/
+	ing_index++;
 }

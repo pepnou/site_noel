@@ -48,11 +48,12 @@
 							echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
 							exit;
 						}
+						$info_recette = $result->fetch_row();
 
-						if(!$info_recette = $result->fetch_row())
-						{
-
+						if($_SESSION['id'] == $info_recette[13]) {
+							echo "<a href=\"/site_noel/cuisine/change/change.php\" style=\"width: 20%; margin-bottom: 10px;\"><h2>Modifier</h2></a>";
 						}
+
 
 						$result->free();
 
@@ -132,48 +133,41 @@
 										</div>
 									</div>
 								</fieldset>
-								<fieldset>
+								<fieldset id="ingredient">
 									<legend>
 										Ingredients
 									</legend>
-									<div id="ingredient">
-										<div>
-											<p>Quantités pour </p>
-											<!--<input type="button" name="ing_min" id="ing_min" value=" - " onclick="ing_min();">
-											<p id="ing"><?php//echo $info_recette[4]; ?></p>
-											<input type="button" name="ing_plus" id="ing_plus" value=" + " onclick="ing_plus();">
-											<p>  <?php //echo $info_recette[5]; ?></p>-->
-
-											<input type="number" name="ing" id="ing" min="1" oninput="ing_change();" value="<?php echo $info_recette[4]; ?>">
-											<p>  <?php echo $info_recette[5]; ?></p>
-											<script type="text/javascript">
-												setup_pers(<?php echo $info_recette[4]; ?>);
-											</script>
+									<!--<div id="ingredient">-->
+										<div style="margin-bottom: 5px;">
+											<div>
+												<p>Quantités pour </p>
+												<input type="number" name="ing" id="ing" min="1" oninput="ing_change();" value="<?php echo $info_recette[4]; ?>">
+												<p>  <?php echo $info_recette[5]; ?></p>
+												<script type="text/javascript">
+													setup_pers(<?php echo $info_recette[4]; ?>);
+												</script>
+											</div>
 										</div>
+
 										<?php
+											/*
 											$sql = 'SELECT DISTINCT i.nom, i.photo, c.quantite, c.unite FROM contient c, ingredient i WHERE c.idI = i.idI AND c.idR = '.$_GET['id'];
 
-											if (!$result = $mysqli->query($sql))
-											{
+											if (!$result = $mysqli->query($sql)) {
 												echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
 												exit;
 											}
 
 											$i=0;
-
-											while ($get_info = $result->fetch_row())
-											{
+											while ($get_info = $result->fetch_row()) {
 												?>
 													<div>
 														<?php
-															if($get_info[1] != "")
-															{
+															if($get_info[1] != "") {
 																?>
 																	<img src="<?php echo $get_info[1]; ?>">
 																<?php
-															}
-															else
-															{
+															} else {
 																?>
 																	<img src="/site_noel/general/Empty.png">
 																<?php
@@ -190,8 +184,35 @@
 												$i++;
 											}
 											$result->free();
+											*/
 										?>
-									</div>
+
+
+										<?php
+											$sql = 'SELECT DISTINCT i.nom, i.photo, c.quantite, c.unite, c.category FROM contient c, ingredient i WHERE c.idI = i.idI AND c.idR = '.$_GET['id'];
+
+											if (!$result = $mysqli->query($sql)) {
+												echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+												exit;
+											}
+
+											$i=0;
+											while ($get_info = $result->fetch_row()) {
+												$nom = $get_info[0];
+												$photo = $get_info[1];
+												$quantite = $get_info[2];
+												$unite = $get_info[3];
+												$category = $get_info[4];
+
+												if($get_info[1] == "") {
+													$photo = "/site_noel/general/Empty.png";
+												}
+
+												echo "\n<script type=\"text/javascript\">display_ingredient(\"$nom\", \"$photo\", $quantite, \"$unite\", \"$category\");</script>";
+											}
+											$result->free();
+										?>
+									<!--</div>-->
 								</fieldset>
 							</fieldset>
 						</div>

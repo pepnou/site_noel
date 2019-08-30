@@ -16,8 +16,8 @@
 					<title>Tableau de bord</title>
 					<link rel="stylesheet" type="text/css" href="/site_noel/general/gen_style.css">
 					<link rel="stylesheet" type="text/css" href="search_style.css">
-					<script type="text/javascript" src="search_recette.js"></script>
-					<script type="text/javascript" src="search_scripts.js"></script>
+					<script type="text/javascript" src="./search_recette.js"></script>
+					<script type="text/javascript" src="./search_scripts.js"></script>
 					<style type="text/css" id="style_temps">
 						#temps > *
 						{
@@ -210,7 +210,7 @@
 										<div id="ing_result"></div>
 										<div id="ing_choisis"></div>
 										<input type="hidden" name="ids_ing" id="ids_ing">
-										<script type="text/javascript" src="search_ingredient.js"></script>
+										<script type="text/javascript" src="./search_ingredient.js"></script>
 									</fieldset>
 									<fieldset>
 										<legend>

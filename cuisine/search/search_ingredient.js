@@ -31,7 +31,8 @@
 	
 	function displayResults(response) { // Affiche les résultats d'une requête
 	
-    	results.style.display = response.length ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
+    	results.style.display = response.length > 4 ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
+    	results.innerHTML = ''; // On vide les résultats
 	
 	    if (response.length) { // On ne modifie les résultats que si on en a obtenu
 
@@ -44,14 +45,12 @@
 
 	        var responseLen = response[0].length;
 	
-	        results.innerHTML = ''; // On vide les résultats
-	
 	        for (var i = 0, div ; i < responseLen ; i++) {
 	
             	div = results.appendChild(document.createElement('div'));
 
             	if(response[2][i] == 'NULL')
-            		div.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"> <p>'+response[1][i]+'</p>';
+            		div.innerHTML = '<img src="/site_noel/general/Empty.png"> <p>'+response[1][i]+'</p>';
             	else
             		div.innerHTML = '<img src="'+response[2][i]+'"> <p>'+response[1][i]+'</p>';
 	
