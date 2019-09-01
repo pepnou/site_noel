@@ -14,7 +14,7 @@ function insert_recipe() {
 		source = document.getElementById('source'),
 		facilite = document.getElementById('facilite'),
 		cout = document.getElementById('cout'),
-		ing_choisis = document.getElementById('ing_choisis'),
+		ingredients = document.getElementById('categories'),
 		ids_tags = document.getElementById('ids_tags'),
 		photos = document.getElementById('photos'),
 		steps = document.getElementById('steps');
@@ -69,10 +69,6 @@ function insert_recipe() {
 		error.innerText = "Un cout de préparation approximatif doit être spécifié.";
 		return;
 	}
-	if(ing_choisis.children.length == 0) {
-		error.innerText = "Une recette doit au moins comporter un ingredient.";
-		return;
-	}	
 
 
 
@@ -97,19 +93,44 @@ function insert_recipe() {
 	photos_array = photos_array.join('|');
 
 
+
 	var ingredients_array = [];
-	ingredients_array.push(ing_choisis.children.length);
-	for (var i = 0; i < ing_choisis.children.length; i++) {
-		console.log(ing_choisis.children[i].children[1].children[0].children[1].value);
-		if(ing_choisis.children[i].children[1].children[0].children[1].value == 0) {
-			error.innerText = "Chaque ingrédient doit comporter une quantité supérieure à 0.";
-			return;
+	ingredients_array.push(0);
+	console.log("categories: ");
+	console.log(ingredients);
+	for(var i = 0; i < ingredients.children.length; i++) {
+		var category = ingredients.children[i];
+		console.log("category: ");
+		console.log(category);
+		for(var j = 0; j < category.children[4].children.length; j++) {
+			var ingredient = category.children[4].children[j];
+			console.log("ingredient: ");
+			console.log(ingredient)
+
+			if(ingredient.children[1].children[0].children[1].value == 0) {
+				error.innerText = "Chaque ingrédient doit comporter une quantité supérieure à 0.";
+				return;
+			}
+
+			ingredients_array.push(ingredient.children[0].children[2].value);
+			ingredients_array.push(ingredient.children[1].children[0].children[1].value);
+			ingredients_array.push(encodeURIComponent(ingredient.children[1].children[1].children[1].value));
+
+			if(category.tagName.toLowerCase() == "div") {
+				ingredients_array.push("");
+			} else {
+				ingredients_array.push(encodeURIComponent(category.children[0].innerText));
+			}
+
+			ingredients_array[0]++;
 		}
-		ingredients_array.push(ing_choisis.children[i].children[1].children[0].children[1].id.slice("quantity".length));
-		ingredients_array.push(ing_choisis.children[i].children[1].children[0].children[1].value);
-		ingredients_array.push(encodeURIComponent(ing_choisis.children[i].children[1].children[1].children[1].value));
 	}
 	ingredients_array = ingredients_array.join('|');
+
+	if(ingredients_array[0] == 0) {
+		error.innerText = "Une recette doit au moins comporter un ingredient.";
+		return;
+	}
 
 
 	if(steps.children[0].children[1].value.length == 0) {

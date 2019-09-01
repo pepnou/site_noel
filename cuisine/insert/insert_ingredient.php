@@ -16,12 +16,6 @@
 
 		mysqli_set_charset($mysqli, "utf8");
 
-		echo $_POST['nom_ingredient']."\n";
-		echo urldecode($_POST['nom_ingredient'])."\n";
-		echo strtolower(urldecode($_POST['nom_ingredient']))."\n";
-		echo ucfirst(strtolower(urldecode($_POST['nom_ingredient'])))."\n";
-		echo mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($_POST['nom_ingredient']))))."\n";
-
 		$nom_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($_POST['nom_ingredient']))));
 		$image_ingredient = mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($_POST['image_ingredient']))));
 

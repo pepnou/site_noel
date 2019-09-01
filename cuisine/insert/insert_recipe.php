@@ -58,15 +58,16 @@
 
 	$ingredients = explode("|", $_POST['ingredients']);
 	if($ingredients[0] > 0) {
-		$ingredients_sql = "INSERT INTO contient(idI, idR, quantite, unite) VALUES";
-		for ($i=1; $i < count($ingredients); $i += 3) {
+		$ingredients_sql = "INSERT INTO contient(idI, idR, quantite, unite, category) VALUES";
+		for ($i=1; $i < count($ingredients); $i += 4) {
 			$idI = $ingredients[$i];
 			$quantite = $ingredients[$i + 1];
 			$unite = mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($ingredients[$i + 2]))));
+			$category = mysqli_real_escape_string( $mysqli, ucfirst(strtolower(urldecode($ingredients[$i + 3]))));
 			if($i == 1) {
-				$ingredients_sql .= "('$idI', '$idR', '$quantite', '$unite')";
+				$ingredients_sql .= "('$idI', '$idR', '$quantite', '$unite', '$category')";
 			} else {
-				$ingredients_sql .= ", ('$idI', '$idR', '$quantite', '$unite')";
+				$ingredients_sql .= ", ('$idI', '$idR', '$quantite', '$unite', '$category')";
 			}
 		}
 
@@ -134,23 +135,5 @@
 		}
 	}
 
-
-
-	/*
-	'nom=' + nom.value + 
-	'&quantite=' + quantite.value + 
-	'&unite=' + unite.value + 
-	'&temps_prep=' + temps_prep.value +
-	'&temps_cuis=' + temps_cuis.value +
-	'&saison=' + saison +
-	'&pays=' + pays.value +
-	'&source=' + source.value + 
-	'&facilite=' + facilite.value +
-	'&cout=' + cout.value +
-	'&ingredients=' + ingredients_array +
-	'&ids_tags=' + ids_tags.value +
-	'&photos=' + photos_array +
-	'&steps=' + steps_array;
-	*/
 	echo $idR;
 ?>
