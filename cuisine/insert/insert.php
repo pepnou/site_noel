@@ -2,6 +2,7 @@
 	if(!isset($_SESSION)) {
 		session_start();
 	}
+	setlocale(LC_ALL,'fr_FR@euro', 'fr_FR', 'fr', 'FR');
 
 	if(!isset($_SESSION['id']))
 	{
@@ -175,21 +176,18 @@
 										<legend>
 											Ingredients Inclus
 										</legend>
-										<div id="catégories">
-											<div>
+										<div id="categories">
+											<div class="category">
+												<div></div>
 												<div></div>
 												<div>
-
 													<div>
 														<input type="text" id="ingredient">
 														<label for="ingredient">Ingredient</label>
 													</div>
 												</div>
-
-												<!--<div id="ing_result" class="ingredient_selection"></div>
-												<div id="ing_choisis" class="ingredient_selection"></div>-->
-												<div></div>
-												<div></div>
+												<div class="ing_result"></div>
+												<div class="ing_choisis"></div>
 											</div>
 										</div>
 
@@ -218,6 +216,30 @@
 										</fieldset>
 
 										<script type="text/javascript" src="./search_ingredient3.js"></script>
+
+										<!--
+										<div>
+											<div>
+												<input type="text" name="ingredient" id="ingredient">
+												<label for="ingredient">Ingredient</label>
+											</div>
+										</div>
+										<div class="ing_result" id="ing_result" class="ingredient_selection"></div>
+										<div id="ing_choisis" class="ingredient_selection"></div>
+										<input type="hidden" name="ids_ing" id="ids_ing">
+
+										<div style="display: none;" id="insert_ingredient_form">
+											<div style="display: flex; flex-direction: column;">
+												<div style="display: flex; flex-direction: row; justify-content: space-around;">
+													<label for="ingredient_photo">Image (url) : </label>
+													<input type="text">
+												</div>
+												<input type="button" value="Ajouter ingredient">
+											</div>
+										</div>
+
+										<script type="text/javascript" src="./search_ingredient2.js"></script>
+										-->
 
 									</fieldset>
 									<fieldset>

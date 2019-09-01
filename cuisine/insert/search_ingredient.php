@@ -1,4 +1,5 @@
 <?php
+	setlocale(LC_ALL,'fr_FR@euro', 'fr_FR', 'fr', 'FR');
 	$tmp = urldecode($_GET['s']);
 	
 	if($tmp == '' || $tmp == ' ')

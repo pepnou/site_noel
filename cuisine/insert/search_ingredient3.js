@@ -1,29 +1,16 @@
-/*var searchElements = [document.getElementById('ingredient')];
-
-searchElements[0].addEventListener("cat", function(){
-	console.log("test");
-});
-
-var event = new CustomEvent("cat");
-
-document.onclick = function(){searchElements[0].dispatchEvent(event);};*/
-
-
-
-
-
 
 var searchElement = document.getElementById('ingredient'),
-	/*results = document.getElementById('ing_result'),
-	choisis = document.getElementById('ing_choisis'),*/
 	insert_ingredient_form = document.getElementById('insert_ingredient_form'),
+	categories_div = document.getElementById('categories'),
 	previousRequest;
 
 var selectedResult = -1;
 
-var ingredients = [];
+var ingredients = [[]];
 var categories = [];
 var searchElements = [searchElement];
+
+
 
 var focus_changed_event = new CustomEvent("focus_changed");
 
@@ -43,13 +30,15 @@ searchElement.addEventListener('focus', function(e) {
 searchElement.addEventListener('focus_changed', function(e) {
 	if(searchElement === e.target);
 	else {
-		e.target.parentNode.parentNode.parentNode.children[2].style.display = "none";
+		e.target.parentNode.parentNode.parentNode.children[3].style.display = "none";
 		e.target.value = '';
 	}
 });
 
+
+
 function handle_key(e) {
-	var results = e.target.parentNode.parentNode.parentNode.children[2];
+	var results = e.target.parentNode.parentNode.parentNode.children[3];
 	var divs = results.getElementsByTagName('div');
 
 	if (e.keyCode == 38 && selectedResult > -1) { // Si la touche pressée est la flèche "haut"
@@ -72,10 +61,10 @@ function handle_key(e) {
 		return;
 	}
 
-	/*if (e.keyCode == 13 && selectedResult > -1) { // Si la touche pressée est "Entrée"
+	if (e.keyCode == 13 && selectedResult > -1) { // Si la touche pressée est "Entrée"
 		chooseResult(divs[selectedResult].children[2].value, divs[selectedResult].children[1].innerText, divs[selectedResult].children[0].src);
 		return;
-	}*/
+	}
 
 	if (previousRequest && previousRequest.readyState < XMLHttpRequest.DONE) {
 		previousRequest.abort(); // Si on a toujours une requête en cours, on l'arrête
@@ -103,7 +92,7 @@ function getResults(keywords) { // Effectue une requête et récupère les résu
 }
 
 function displayResults(response) { // Affiche les résultats d'une requête
-	var results = searchElement.parentNode.parentNode.parentNode.children[2];
+	var results = searchElement.parentNode.parentNode.parentNode.children[3];
 
 	results.style.display = (response.length > 4 || searchElement.value.length > 0) ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
 
@@ -127,16 +116,16 @@ function displayResults(response) { // Affiche les résultats d'une requête
 		
 		div.innerHTML = insert_ingredient_form.innerHTML;
 		div.style = "width: max-content;"
-		div.id = "ingredient_form";
+		div.id = "";
 
-		div.children[0].children[1].addEventListener("click", function() {
-			add_ingredient();
+		div.children[0].children[1].addEventListener("click", function(e) {
+			add_ingredient(e);
 		});
 	}
 }
 
 function displayResult(id, name, image) {
-	var results = searchElement.parentNode.parentNode.parentNode.children[2];
+	var results = searchElement.parentNode.parentNode.parentNode.children[3];
 
 	div = results.appendChild(document.createElement('div'));
 
@@ -160,11 +149,10 @@ function displayResult(id, name, image) {
 	});
 }
 
-function add_ingredient() {
-	var form = document.getElementById("ingredient_form");
+function add_ingredient(e) {
 
 	var nom_ingredient = searchElement.value,
-	image_ingredient = form.children[0].children[0].children[1].value;
+	image_ingredient = e.target.parentNode.children[0].children[1].value;
 
 	var request =	'nom_ingredient=' + encodeURIComponent(nom_ingredient) + 
 					'&image_ingredient=' + encodeURIComponent(image_ingredient);
@@ -178,9 +166,9 @@ function add_ingredient() {
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 			if(xhr.responseText != "Allready inserted") {
+				console.log(xhr.responseText);
 				chooseResult(xhr.responseText ,nom_ingredient.charAt(0).toUpperCase() + nom_ingredient.slice(1).toLowerCase(), image);
 			}
-
 		}
 	});
 
@@ -190,7 +178,18 @@ function add_ingredient() {
 
 function chooseResult(id, name, image) { // Choisi un des résultats d'une requête et gère tout ce qui y est attaché
 
-	if(!ingredients.find(function(element) { return element == id; } ) ) {
+	var cat_index
+	for(var i = 0; i < categories_div.children.length; i++) {
+		if(categories_div.children[i] === searchElement.parentNode.parentNode.parentNode) {
+			cat_index = i;
+			break;
+		}
+	}
+
+	var choisis = searchElement.parentNode.parentNode.parentNode.children[4];
+	var results = searchElement.parentNode.parentNode.parentNode.children[3];
+
+	if(!ingredients[cat_index].find(function(element) { return element == id; } ) ) {
 
 		var div = choisis.appendChild(document.createElement('div'));
 
@@ -235,7 +234,7 @@ function chooseResult(id, name, image) { // Choisi un des résultats d'une requ�
 			removeChosen(e.target, id);
 		});
 
-		ingredients.push(id);
+		ingredients[cat_index].push(id);
 	}
 
 	searchElement.value = '';
@@ -245,23 +244,26 @@ function chooseResult(id, name, image) { // Choisi un des résultats d'une requ�
 }
 
 function removeChosen(result, id) {
-	
-	var index = ingredients.indexOf(id);
-	ingredients.splice(index,1);
 
-	result.parentNode.parentNode.parentNode.removeChild(result.parentNode.parentNode);
+	var cat_index
+	for(var i = 0; i < categories_div.children.length; i++) {
+		if(categories_div.children[i] === result.parentNode.parentNode.parentNode.parentNode) {
+			cat_index = i;
+			break;
+		}
+	}
+	
+	var index = ingredients[cat_index].indexOf(id);
+	ingredients[cat_index].splice(index,1);
+
+	result.parentNode.parentNode.remove();
 }
 
 
 
 
-
-
-
-
-
 var category_name = document.getElementById('new_category');
-var global_div = document.getElementById("catégories");
+var global_div = document.getElementById("categories");
 var global_index = 0;
 
 document.getElementById("add_new_category").addEventListener("click", function() {
@@ -269,20 +271,34 @@ document.getElementById("add_new_category").addEventListener("click", function()
 });
 
 function add_category() {
-	if(!categories.find(function(element) { return element == category_name.value; } )) {
+	if(category_name.value.length > 0 && !categories.find(function(element) { return element == category_name.value; } )) {
 		var name = category_name.value;
 
 		var fieldset = global_div.appendChild(document.createElement("fieldset"));
 
 		var legend = fieldset.appendChild(document.createElement("legend"));
-		var div = fieldset.appendChild(document.createElement("div"));
-		fieldset.appendChild(document.createElement("div"));
-		fieldset.appendChild(document.createElement("div"));
 
+		var rm_cat = fieldset.appendChild(document.createElement("input"));
+
+		var div = fieldset.appendChild(document.createElement("div"));
+		var ing_result = fieldset.appendChild(document.createElement("div"));
+		var ing_choisis = fieldset.appendChild(document.createElement("div"));
+
+		div.className = "category";
 		div = div.appendChild(document.createElement("div"));
 
 		var input = div.appendChild(document.createElement("input"));
 		var label = div.appendChild(document.createElement("label"));
+
+		rm_cat.type = "button";
+		rm_cat.value = "Retirer catégorie";
+
+		rm_cat.addEventListener('click', function(e) {
+			remove_category(e);
+		});
+
+		ing_result.className = "ing_result";
+		ing_choisis.className = "ing_choisis";
 
 		legend.innerText = name;
 
@@ -314,12 +330,29 @@ function add_category() {
 		input.addEventListener('focus_changed', function(e) {
 			if(searchElement === e.target);
 			else {
-				e.target.parentNode.parentNode.parentNode.children[2].style.display = "none";
+				e.target.parentNode.parentNode.parentNode.children[3].style.display = "none";
 				e.target.value = '';
 			}
 		});
 
 		categories.push(name);
 		searchElements.push(input);
+		ingredients.push([]);
 	}
+}
+
+function remove_category(e) {
+	var cat_index
+	for(var i = 0; i < categories_div.children.length; i++) {
+		if(categories_div.children[i] === e.target.parentNode) {
+			cat_index = i;
+			break;
+		}
+	}
+
+	ingredients.splice(cat_index, 1);
+	categories.splice(cat_index - 1, 1);
+	searchElements.splice(cat_index, 1);
+
+	e.target.parentNode.remove();
 }

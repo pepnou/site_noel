@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	setlocale(LC_ALL,'fr_FR@euro', 'fr_FR', 'fr', 'FR');
 
 	$mysqli = new mysqli('localhost', 'root', '', 'mydb');
 

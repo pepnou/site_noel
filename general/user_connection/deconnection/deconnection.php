@@ -1,5 +1,6 @@
-<?php	
+<?php
 	session_start();
+	setlocale(LC_ALL,'fr_FR@euro', 'fr_FR', 'fr', 'FR');
 	$_SESSION = array();
 	session_destroy();
 ?>
