@@ -143,7 +143,7 @@
 												<select name="pays" id="pays" onchange="getResultsR();">
 													<option value="-1"></option>
 													<?php
-														$sql = "SELECT r.pays FROM recette r";
+														$sql = "SELECT DISTINCT LOWER(r.pays) FROM recette r";
 
 														if (!$result = $mysqli->query($sql))
 														{
@@ -154,7 +154,7 @@
 														while ($get_info = $result->fetch_row())
 														{
 															?>
-																<option value="<?php echo $get_info[0]; ?>"><?php echo $get_info[0]; ?></option>
+																<option value="<?php echo ucfirst($get_info[0]); ?>"><?php echo ucfirst($get_info[0]); ?></option>
 															<?php
 														}
 														$result->free();

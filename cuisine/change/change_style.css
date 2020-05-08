@@ -1,0 +1,240 @@
+/*haut/droit/bas/gauche*/
+h1
+{
+	margin-bottom: 50px;
+
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	/*box-shadow: -10px 10px 2px 2px rgba(40,95,40,0.85);*/
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+}
+
+h2
+{
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+}
+
+#contenu
+{
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+legend
+{
+	border: 1px solid rgba(170,100,30,0.90);
+	border-radius: 5px;
+
+	box-shadow: 0px 2px 2px 0px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	padding: 2px 5px 2px 5px;
+	margin-left: 5px;
+}
+
+fieldset fieldset fieldset fieldset
+{
+	background-color: hsla(120, 41%, 37%, 0.85);
+}
+
+fieldset fieldset fieldset
+{
+	background-color: hsla(120, 41%, 40%, 0.85);
+}
+
+fieldset fieldset
+{
+	background-color: hsla(120, 41%, 43%, 0.85);
+}
+
+fieldset
+{
+	margin-top: 10px;
+
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	padding: 10px 5px 10px 5px;
+
+	background-color: hsla(120, 41%, 46%, 0.85);
+}
+
+fieldset > div
+{
+	display: flex;
+	flex-direction: column;
+}
+
+
+fieldset > div > div
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+fieldset > div > *
+{
+	margin-top: 5px;
+}
+
+label, #temps > p
+{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+
+.category
+{
+	display: block;
+}
+
+.ing_result
+{
+	position: absolute;
+	display: none;
+	width: min-content;
+	border: 1px solid #AAA;
+	border-top-width: 0;
+	background-color: #FFF;
+}
+
+.ing_result > div
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	padding: 2px 4px;
+	text-align: left;
+	border: 0;
+	background-color: #FFF;
+}
+
+.result_focus, .ing_result > div:hover
+{
+	background-color: #DDD !important;
+}
+
+
+
+
+.ing_choisis
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.ing_choisis div
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.ing_choisis div div
+{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-content: space-between;
+	align-items: center;
+
+	justify-content: space-around;
+}
+
+.ing_choisis div div div
+{
+	display: flex;
+	flex-direction: row;
+	align-content: space-between;
+	align-items: center;
+
+	width: initial;
+}
+
+.ing_result img, .ing_choisis img
+{
+	width: 50px;
+	height: 50px;
+
+	padding: 3px;
+
+	border: 1px solid black;
+}
+
+.ing_result p, .ing_choisis p
+{
+	flex: 1;
+
+	text-align: center;
+}
+
+.ing_choisis > div
+{
+	background-color: rgba(55,135,55,0.85);
+
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+
+	margin-top: 5px;
+	padding: 5px;
+}
+
+.ing_choisis > div > div > img
+{
+	background-color: rgba(50,125,50,0.85);
+
+	border: 1px solid rgba(170,100,30,0.90);
+	box-shadow: 0px 2px 2px 0px;
+}
+
+
+
+
+
+
+
+
+#preparation
+{
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+
+	margin-left: 50px;
+}
+
+#realisation
+{
+	display: flex;
+	flex-direction: column;
+
+	margin-top: 25px;
+}
+
+#explanation > p
+{
+	width: 100%;
+	text-align: center;
+}
+
+textarea
+{
+	resize: vertical;
+	width: 100%;
+}

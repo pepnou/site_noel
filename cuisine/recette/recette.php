@@ -52,7 +52,7 @@
 						$info_recette = $result->fetch_row();
 
 						if($_SESSION['id'] == $info_recette[13]) {
-							echo "<a href=\"/site_noel/cuisine/change/change.php\" style=\"width: 20%; margin-bottom: 10px;\"><h2>Modifier</h2></a>";
+							echo "<a href=\"/site_noel/cuisine/change/change.php?id=".$_GET['id']."\" style=\"width: 20%; margin-bottom: 10px;\"><h2>Modifier</h2></a>";
 						}
 
 

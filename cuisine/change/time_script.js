@@ -3,7 +3,6 @@ minute[0] = 60;
 minute[1] = 60;
 
 function minus(index, timestep) {
-	console.log("minus");
 	minute[index] -= timestep;
 	minute[index] = Math.max(minute[index], 0);
 
@@ -11,11 +10,17 @@ function minus(index, timestep) {
 }
 
 function plus(index, timestep) {
-	console.log("plus");
 	minute[index] += timestep;
 	minute[index] = Math.min(minute[index], 1439);
 	
 	update_temps(index);
+}
+
+function init(index, time) {
+	parsed_time = time.split(':');
+	minute[index] = parseInt(parsed_time[0], 10) * 60 + parseInt(parsed_time[1], 10);
+
+	update_temps(index)
 }
 
 function update_temps(index) {
