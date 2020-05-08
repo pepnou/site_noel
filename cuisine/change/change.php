@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 	if(!isset($_SESSION)) {
 		session_start();
 	}
@@ -48,11 +48,10 @@
 
 						if (!($recette = $result->fetch_row()))
 						{
-							// pas de recette avec cet index ou l'utilisateur n 'est pas celui qui l a ajouté
+							// pas de recette avec cet index ou l'utilisateur n 'est pas celui qui l a ajoutÃ©
 						}
 						$result->free();
 					?>
-
 
 					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;" id="insert">Modifier</h2>
 					<script type="text/javascript" src="./insert_recipe.js"></script>
@@ -79,7 +78,7 @@
 								</fieldset>
 								<fieldset>
 									<legend>
-										Quantité
+										QuantitÃ©
 									</legend>
 									<div>
 										<div>
@@ -87,7 +86,7 @@
 											<input type="number" name="quantite_preparation" id="quantite_preparation" min="0" value="<?php echo $recette[4]; ?>">
 										</div>
 										<div>
-											<label for="unite_quantite">Unité : </label>
+											<label for="unite_quantite">UnitÃ© : </label>
 											<input type="text" name="unite_quantite" id="unite_quantite" autocomplete="off" value="<?php echo $recette[5]; ?>" >
 										</div>
 									</div>
@@ -103,7 +102,7 @@
 											<input type="button" value=" - " onclick="minus(0,5);">
 											<input type="button" value=" + " onclick="plus(0,5);">
 											<input type="button" value=" ++ " onclick="plus(0,30);">
-											<p> Temps de Réalisation</p>
+											<p> Temps de RÃ©alisation</p>
 											<input type="hidden" name="temps_preparation" id="temps_prep" value="<?php echo $recette[3]; ?>">
 										</div>
 										<div id="temps">
@@ -141,7 +140,7 @@
 										</div>
 										<div>
 											<?php
-												$query = "SELECT * FROM se_prepare_en spe JOIN saison s ON spe.idS = s.idS WHERE spe.idR=".$_GET['id']." AND s.saisoncol=\"été\"";
+												$query = "SELECT * FROM se_prepare_en spe JOIN saison s ON spe.idS = s.idS WHERE spe.idR=".$_GET['id']." AND s.saisoncol=\"Ã©tÃ©\"";
 												if (!$result = $mysqli->query($query))
 												{
 													echo "SELECT error in query " . $query . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
@@ -150,7 +149,7 @@
 											?>
 											<input type="checkbox" name="ete" id="ete" <?php if($result->fetch_row()) {echo "checked";} ?>>
 											<?php $result->free() ?>
-											<label for="ete">Eté</label>
+											<label for="ete">EtÃ©</label>
 										</div>
 										<div>
 											<?php
@@ -182,7 +181,7 @@
 								</fieldset>
 								<fieldset>
 									<legend>
-										Informations Générales
+										Informations GÃ©nÃ©rales
 									</legend>
 									<fieldset>
 										<legend>
@@ -201,23 +200,23 @@
 									</fieldset>
 									<fieldset>
 										<legend>
-											Réalisation
+											RÃ©alisation
 										</legend>
 										<div>
 											<div>
 												<select name="facilite" id="facilite">
 													<option value="-1"></option>
-													<option value="0" <?php if($recette[9] == 0) {echo "selected";} ?>>Très Facile</option>
+													<option value="0" <?php if($recette[9] == 0) {echo "selected";} ?>>TrÃ¨s Facile</option>
 													<option value="1" <?php if($recette[9] == 1) {echo "selected";} ?>>Facile</option>
 													<option value="2" <?php if($recette[9] == 2) {echo "selected";} ?>>Moyen</option>
 													<option value="3" <?php if($recette[9] == 3) {echo "selected";} ?>>Difficile</option>
 												</select>
-												<label for="facilite">Facilité</label>
+												<label for="facilite">FacilitÃ©</label>
 											</div>
 											<div>
 												<select name="cout" id="cout">
 													<option value="-1"></option>
-													<option value="0" <?php if($recette[8] == 0) {echo "selected";} ?>>bon marché</option>
+													<option value="0" <?php if($recette[8] == 0) {echo "selected";} ?>>bon marchÃ©</option>
 													<option value="1" <?php if($recette[8] == 1) {echo "selected";} ?>>moyen</option>
 													<option value="2" <?php if($recette[8] == 2) {echo "selected";} ?>>cher</option>
 												</select>
@@ -243,9 +242,6 @@
 												<div class="ing_choisis"></div>
 											</div>
 										</div>
-
-
-
 										<div style="display: none;" id="insert_ingredient_form">
 											<div style="display: flex; flex-direction: column;">
 												<div style="display: flex; flex-direction: row; justify-content: space-around;">
@@ -258,7 +254,7 @@
 
 										<fieldset>
 											<legend>
-												Ajouter une catégorie.
+												Ajouter une catÃ©gorie.
 											</legend>
 											<div>
 												<div style="justify-content: space-around;">
@@ -269,6 +265,35 @@
 										</fieldset>
 
 										<script type="text/javascript" src="./search_ingredient3.js"></script>
+
+										<?php
+											$sql = "SELECT DISTINCT c.category FROM contient c WHERE c.idR=".$_GET['id']." AND c.category IS NOT NULL";
+
+											if (!$result = $mysqli->query($sql))
+											{
+											 	echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+											 	exit;
+											}
+
+											while ($cats = $result->fetch_row())
+											{
+												print("<script>manual_cat_insert(\"".$cats[0]."\");</script>");
+											}
+											$result->free();
+
+											$sql = "SELECT i.idI, i.nom, i.photo, c.category, c.quantite, c.unite FROM contient c JOIN ingredient i ON c.idI=i.idI WHERE c.idR=".$_GET['id'];
+											if (!$result2 = $mysqli->query($sql))
+											{
+											 	echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+											 	exit;
+											}
+
+											while ($ings = $result2->fetch_row())
+											{
+												print("<script>manual_ing_insert(\"".$ings[0]."\",\"".$ings[1]."\",\"".$ings[2]."\",\"".$ings[3]."\",\"".$ings[4]."\",\"".$ings[5]."\");</script>");
+											}
+											$result2->free();
+										?>
 
 									</fieldset>
 									<fieldset>
@@ -335,21 +360,46 @@
 							</fieldset>
 						</div>
 						<div id="preparation">
-							<h2>Réalisation</h2>
+							<h2>RÃ©alisation</h2>
 							<div id="realisation">
 								<div id="steps">
+									<?php 
+										$query = "Select * FROM etape e WHERE e.idR=". $_GET['id']." ORDER BY e.idE";
+										if (!$result = $mysqli->query($query))
+										{
+											echo "SELECT error in query " . $query . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+											exit;
+										}
+
+										$index = 1;
+
+										while ($step = $result->fetch_row())
+										{
+											print("<fieldset>
+												<legend>
+													Etape ".$index." :
+												</legend>
+												<textarea rows=\"7\">".$step[2]."</textarea>
+												<p>Photo (optionnel) :</p>
+												<input style=\"width: 100%;\" type=\"url\" id=\"stepPhoto".$index."\" value=\"".$step[1]."\">
+											</fieldset>");
+											$index += 1;
+										}
+										$result->free();
+										?>
+
 									<fieldset>
 										<legend>
-											Etape 1 :
+											Etape <?php echo $index; ?> :
 										</legend>
 										<textarea rows="7"></textarea>
 										<p>Photo (optionnel) :</p>
-										<input style="width: 100%;" type="url" id="stepPhoto1">
+										<input style="width: 100%;" type="url" id="stepPhoto<?php echo $index; ?>">
 									</fieldset>
 								</div>
 								<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">
-									<input type="button" value="Ajouter une étape" id="AjoutEtape">
-									<input type="button" value="Retirer une étape" id="SupprEtape">
+									<input type="button" value="Ajouter une Ã©tape" id="AjoutEtape">
+									<input type="button" value="Retirer une Ã©tape" id="SupprEtape">
 									<script type="text/javascript">
 										var steps = document.getElementById("steps");
 
