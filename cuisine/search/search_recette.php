@@ -22,7 +22,7 @@
 	}
 
 	if($_POST['favori'] == 'true') {
-		$sql_cond[] = ' ( r.idR = f.idR AND f.idU = 1 ) ';
+		$sql_cond[] = ' ( r.idR = f.idR AND f.idU = '.$_SESSION['id'].' ) ';
 		$sql_from_part .= ', favori f';
 	}
 
@@ -121,6 +121,7 @@
 
 	$result->free();
 	$mysqli->close();
+
 
 	if(count($id)>0)
 		echo implode('|', $id).'||'.implode('|', $nom).'||'.implode('|', $image);

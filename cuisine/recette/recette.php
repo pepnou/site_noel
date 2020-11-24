@@ -24,49 +24,99 @@
 
 					<?php include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/nav.php"); ?>
 
-					<?php
-						if(!isset($_GET['id']))
-						{
+					<div class="horz align-prim">
+						<?php
+							if(!isset($_GET['id']))
+							{
 
-						}
+							}
 
-						$mysqli = new mysqli('localhost', 'root', '', 'mydb');
+							$mysqli = new mysqli('localhost', 'root', '', 'mydb');
 
-						if ($mysqli->connect_errno)
-						{
-							echo 'Erreur de connexion : errno: ' . $mysqli->errno . ' error: ' . $mysqli->error;
-							exit;
-						}
+							if ($mysqli->connect_errno)
+							{
+								echo 'Erreur de connexion : errno: ' . $mysqli->errno . ' error: ' . $mysqli->error;
+								exit;
+							}
 
-						mysqli_set_charset($mysqli, "utf8");
-
-
-
-						$sql = 'SELECT DISTINCT r.*, u.* FROM recette r, user u WHERE r.idR != 0 AND r.idU = u.idU AND r.idR = '.$_GET['id'];
-
-						if (!$result = $mysqli->query($sql))
-						{
-							echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
-							exit;
-						}
-						$info_recette = $result->fetch_row();
-
-						if($_SESSION['id'] == $info_recette[13]) {
-							echo "<a href=\"/site_noel/cuisine/change/change.php?id=".$_GET['id']."\" style=\"width: 20%; margin-bottom: 10px;\"><h2>Modifier</h2></a>";
-						}
+							mysqli_set_charset($mysqli, "utf8");
 
 
-						$result->free();
 
-						$info_recette[2] = explode(':', $info_recette[2]);
-						$info_recette[2] = $info_recette[2][0].' h '.$info_recette[2][1].' min';
+							$sql = 'SELECT DISTINCT r.*, u.* FROM recette r, user u WHERE r.idR != 0 AND r.idU = u.idU AND r.idR = '.$_GET['id'];
 
-						$info_recette[3] = explode(':', $info_recette[3]);
-						$info_recette[3] = $info_recette[3][0].' h '.$info_recette[3][1].' min';
+							if (!$result = $mysqli->query($sql))
+							{
+								echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+								exit;
+							}
+							$info_recette = $result->fetch_row();
 
-						$cout = ['Bon Marché','Moyen','Cher'];
-						$facilite = ['Très Facile','Facile','Moyen','Difficile'];
-					?>
+
+
+							if($_SESSION['id'] == $info_recette[13]) {
+								echo "<a href=\"/site_noel/cuisine/change/change.php?id=".$_GET['id']."\" style=\"width: 20%; margin-bottom: 10px;\"><h2>Modifier</h2></a>";
+							}
+
+							$result->free();
+
+							$info_recette[2] = explode(':', $info_recette[2]);
+							$info_recette[2] = $info_recette[2][0].' h '.$info_recette[2][1].' min';
+
+							$info_recette[3] = explode(':', $info_recette[3]);
+							$info_recette[3] = $info_recette[3][0].' h '.$info_recette[3][1].' min';
+
+							$cout = ['Bon Marché','Moyen','Cher'];
+							$facilite = ['Très Facile','Facile','Moyen','Difficile'];
+						?>
+
+						<button class="horz align-sec" style="margin-bottom: 10px;" onclick="fav_change();">
+							<img id="fav_img">
+							<h3>Favori</h3>
+						</button>
+
+						<?php
+							$sql = 'SELECT f.* FROM favori f WHERE f.idR = '.$_GET['id'].' AND f.idU = '.$_SESSION['id'];
+
+							if (!$result = $mysqli->query($sql))
+							{
+								echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+								exit;
+							}
+
+							$favori_fetch = $result->fetch_row();
+							if($favori_fetch) {
+								echo '<script>fav_init(1,'.$_GET['id'].');</script>';
+							} else {
+								echo '<script>fav_init(0,'.$_GET['id'].');</script>';
+							}
+						?>
+
+						<?php /*<button class="horz align-sec" style="margin-bottom: 10px;" onclick="minus(1,30);">
+							<?php
+								$sql = 'SELECT f.* FROM favori f WHERE f.idR = '.$_GET['id'].' AND f.idU = '.$_SESSION['id'];
+
+								if (!$result = $mysqli->query($sql))
+								{
+									echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+									exit;
+								}
+
+								$favori_fetch = $result->fetch_row();
+								if($favori_fetch) {
+									echo "<img style=\"height: 20px\" src=\"star_lit.png\">";
+								} else {
+									echo "<img style=\"height: 20px\" src=\"star_unlit.png\">";
+								}
+							?>
+
+
+							<h3>Favori</h3>
+						</button> */?>
+
+
+					</div>
+
 
 					<h1>
 						<?php echo $info_recette[1]; ?>

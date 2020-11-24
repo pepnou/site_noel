@@ -109,6 +109,20 @@ input[type="button"]
 	cursor: pointer;
 }
 
+button
+{
+	padding: 3px 10px 3px 10px;
+
+	border: 3px solid rgba(170,100,30,0.90);
+	border-radius: 5px 20px;
+
+	background-color: rgba(210,130,40,0.90);
+
+	text-align: center;
+
+	cursor: pointer;
+}
+
 input[type="submit"]
 {
 	padding: 3px 10px 3px 10px;

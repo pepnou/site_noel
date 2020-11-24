@@ -139,3 +139,44 @@ function display_ingredient(nom, photo, quantite, unite, category) {
 				*/
 	ing_index++;
 }
+
+
+
+
+var fav = 0;
+var recette;
+function fav_init(fav_i, r) {
+	fav = fav_i;
+	recette = r;
+
+	fav_update_img();
+}
+
+function fav_change() {
+	fav = (fav + 1) % 2;
+
+	fav_update_img();
+	fav_update_db();
+}
+
+function fav_update_db() {
+	var xhr = new XMLHttpRequest();
+    xhr.open('POST', './recette_fav.php');
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+	var request =	'recette=' + recette + 
+					'&favori=' + fav ;
+
+	xhr.send(request);
+}
+
+function fav_update_img() {
+	var fav_img = document.getElementById("fav_img");
+
+	if(fav) {
+		fav_img.src = "star_lit.png";
+	} else {
+		fav_img.src = "star_unlit.png";
+	}
+	fav_img.style = "height: 20px";
+}
