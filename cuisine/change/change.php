@@ -18,7 +18,7 @@
 					<link rel="stylesheet" type="text/css" href="/site_noel/general/gen_style.css">
 					<link rel="stylesheet" type="text/css" href="./change_style.css">
 					<script type="text/javascript" src="./time_script.js"></script>
-					<!--<script type="text/javascript" src="./tags_script.js"></script>-->
+					<script type="text/javascript" src="./tags_script.js"></script>
 				</head>
 				<body>
 					<header>
@@ -53,9 +53,14 @@
 						$result->free();
 					?>
 
-					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;" id="insert">Modifier</h2>
-					<script type="text/javascript" src="./insert_recipe.js"></script>
+					<h2 style="width: 20%; margin-bottom: 10px; cursor: pointer;" id="change">Modifier</h2>
+					<script type="text/javascript" src="./change_recipe.js"></script>
 					<p id="error"></p>
+
+
+					<input type="hidden" id="recette_id" value="<?php echo $_GET['id']; ?>">
+
+
 
 					<h1>Modification de Recettes</h1>
 
