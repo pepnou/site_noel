@@ -363,6 +363,10 @@ function remove_category(e) {
 
 
 function manual_cat_insert(name) {
+	if(name.length == 0) {
+		return;
+	}
+
 	var fieldset = global_div.appendChild(document.createElement("fieldset"));
 
 	var legend = fieldset.appendChild(document.createElement("legend"));

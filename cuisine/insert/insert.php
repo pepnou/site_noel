@@ -334,7 +334,7 @@
 							});
 							document.getElementById("SupprEtape").addEventListener("click", function() {
 								if( steps.children.length > 1 ) {
-									steps.lastChild.remove();
+									steps.lastElementChild.remove();
 								}
 							});
 						</script>

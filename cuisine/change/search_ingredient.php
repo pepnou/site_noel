@@ -1,6 +1,8 @@
 <?php
-	setlocale(LC_ALL,'fr_FR@euro', 'fr_FR', 'fr', 'FR');
-	$tmp = urldecode($_GET['s']);
+	include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/standard_php_header.php");
+	include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/decode.php");
+
+	$tmp = trim(urldecode($_GET['s']));
 	
 	if($tmp == '' || $tmp == ' ')
 		echo '';
@@ -16,7 +18,8 @@
 
 		mysqli_set_charset($mysqli, "utf8");
 
-		$tmp = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_GET['s'])));
+		//$tmp = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_GET['s'])));
+		$tmp = ucfirst_aio_wrap($_GET['s'], $mysqli);
 		//$sql = "SELECT * FROM ingredient i WHERE i.nom LIKE '%$tmp%' ORDER BY i.nom ASC";
 
 		$sql = "SELECT i4.idI, i4.nom, i4.photo

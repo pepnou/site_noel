@@ -1,18 +1,19 @@
 <?php
-	session_start();
-	setlocale(LC_ALL,'fr_FR@euro', 'fr_FR', 'fr', 'FR');
+	include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/standard_php_header.php");
+	include($_SERVER['DOCUMENT_ROOT']."/site_noel/general/decode.php");
 
-	if($_POST['tag'] != '') {
+	$tmp = trim(urldecode($_POST['tag']))
+
+	if($tmp != '') {
 
 		$mysqli = new mysqli('localhost', 'root', '', 'mydb');
-
 		if ($mysqli->connect_errno) {
 			exit;
 		}
-
 		mysqli_set_charset($mysqli, "utf8");
 
-		$formattedStr = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['tag'])));
+		//$formattedStr = mysqli_real_escape_string( $mysqli, ucfirst(strtolower($_POST['tag'])));
+		$formattedStr = ucfirst_aio_wrap($_POST['tag'], $mysqli);
 
 		$sql = "SELECT t.nom FROM tag t WHERE t.nom='$formattedStr'";
 		if (!$result = $mysqli->query($sql)) {
