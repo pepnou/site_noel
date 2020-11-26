@@ -96,16 +96,16 @@ function insert_recipe() {
 
 	var ingredients_array = [];
 	ingredients_array.push(0);
-	console.log("categories: ");
-	console.log(ingredients);
+	//console.log("categories: ");
+	//console.log(ingredients);
 	for(var i = 0; i < ingredients.children.length; i++) {
 		var category = ingredients.children[i];
-		console.log("category: ");
-		console.log(category);
+		//console.log("category: ");
+		//console.log(category);
 		for(var j = 0; j < category.children[4].children.length; j++) {
 			var ingredient = category.children[4].children[j];
-			console.log("ingredient: ");
-			console.log(ingredient)
+			//console.log("ingredient: ");
+			//console.log(ingredient)
 
 			if(ingredient.children[1].children[0].children[1].value == 0) {
 				error.innerText = "Chaque ingrédient doit comporter une quantité supérieure à 0.";
@@ -154,27 +154,29 @@ function insert_recipe() {
 	xhr.open('POST', './insert_recipe.php');
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-	var request =	'nom=' + encodeURIComponent(nom.value) + 
-					'&quantite=' + quantite.value + 
-					'&unite=' + encodeURIComponent(unite.value) + 
-					'&temps_prep=' + temps_prep.value +
-					'&temps_cuis=' + temps_cuis.value +
-					'&saison=' + saison +
-					'&pays=' + encodeURIComponent(pays.value) +
-					'&source=' + encodeURIComponent(source.value) + 
-					'&facilite=' + facilite.value +
-					'&cout=' + cout.value +
-					'&ingredients=' + ingredients_array +
-					'&ids_tags=' + tags_array +
-					'&photos=' + photos_array +
-					'&steps=' + steps_array;
+	console.log("ING " + ingredients_array + "ING");
 
-	//console.log(request);
+	var request =	'nom='			+ encodeURIComponent(nom.value) + 
+					'&quantite='	+ encodeURIComponent(quantite.value) + 
+					'&unite='		+ encodeURIComponent(unite.value) + 
+					'&temps_prep='	+ encodeURIComponent(temps_prep.value) +
+					'&temps_cuis='	+ encodeURIComponent(temps_cuis.value) +
+					'&saison='		+ encodeURIComponent(saison) +
+					'&pays='		+ encodeURIComponent(pays.value) +
+					'&source='		+ encodeURIComponent(source.value) + 
+					'&facilite='	+ encodeURIComponent(facilite.value) +
+					'&cout='		+ encodeURIComponent(cout.value) +
+					'&ingredients=' + encodeURIComponent(ingredients_array) +
+					'&ids_tags='	+ encodeURIComponent(tags_array) +
+					'&photos='		+ encodeURIComponent(photos_array) +
+					'&steps='		+ encodeURIComponent(steps_array);
+
+	console.log(request);
 
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-			//console.log(xhr.responseText);
-			window.location.replace('/site_noel/cuisine/recette/recette.php?id=' + xhr.responseText);
+			console.log(xhr.responseText);
+			//window.location.replace('/site_noel/cuisine/recette/recette.php?id=' + xhr.responseText);
 		}
 	});
 

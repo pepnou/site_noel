@@ -81,6 +81,7 @@ function getResults(keywords) { // Effectue une requête et récupère les résu
 
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+			console.log(xhr.responseText);
 			displayResults(xhr.responseText);
 		}
 	});

@@ -7,10 +7,13 @@ document.getElementById("AjoutTag").addEventListener("click", function() {
 	xhr.open('POST', './insert_tag.php');
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-	var request =	'tag=' + tag.value;
+	var request =	'tag=' + encodeURIComponent(tag.value);
+
+	console.log(request);
 
 	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+			console.log(xhr.responseText);
 			displayTag(xhr.responseText);
 		}
 	});
