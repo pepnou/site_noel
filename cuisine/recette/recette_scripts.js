@@ -36,58 +36,44 @@ function setup_photo(url_photo) {
 function photo_min() {
 	if(photo.length>1)
 	{
-		var photo_element = document.getElementById('photo')/*,
-			photo_div = document.getElementById('photo_div')*/;
+		/*console.log("photo min : " + photo_act + " -> " + ((photo_act - 1 + photo.length) % photo.length));
+
+		//var photo_element = document.getElementById('photo');
+		var photo_div = document.getElementById('photo_div');
 
 		photo_act = (photo_act + photo.length - 1) % photo.length;
-		photo_element.src = photo[photo_act];
+		//photo_element.src = photo[photo_act];
 		//photo_div.style = 'background-image: url('+photo[photo_act]+');';
+		photo_div.style.backgroundImage = 'url('+photo[photo_act]+')';*/
+
+		var photo_element = document.getElementById('photo');
+		photo_act = (photo_act + photo.length - 1) % photo.length;
+
+		photo_element.src = photo[photo_act];
 	}
+	
+	
 }
 
 function photo_plus() {
 	if(photo.length>1)
 	{
-		var photo_element = document.getElementById('photo'),
-			photo_div = document.getElementById('photo_div');
+		/*console.log("photo plus : " + photo_act + " -> " + ((photo_act + 1) % photo.length));
+		
+
+		//var photo_element = document.getElementById('photo');
+		var photo_div = document.getElementById('photo_div');
 
 		photo_act = (photo_act + 1) % photo.length;
+		//photo_element.src = photo[photo_act];
+		//photo_div.style = 'background-image: url('+photo[photo_act]+');';
+		photo_div.style.backgroundImage = 'url('+photo[photo_act]+')';*/
+
+		var photo_element = document.getElementById('photo');
+		photo_act = (photo_act + 1) % photo.length;
+
 		photo_element.src = photo[photo_act];
-		photo_div.style = 'background-image: url('+photo[photo_act]+');';
 	}
-}
-
-function photo_load() {
-	alert('test');
-	var photo_element = document.getElementById('photo'),
-		photo_div = document.getElementById('photo_div'),
-		photo_cont = document.getElementById('preparation');
-
-	var photo_h = photo_element.clientHeight,
-		photo_w = photo_element.clientWidth,
-		r = photo_w/photo_h,
-		max_h = 500,
-		max_w = photo_cont.clientWidth,
-		w,h;
-
-	if(max_w/r > max_h)
-	{
-		h = max_h;
-		w = r * h;
-	}
-	else
-	{
-		w = max_w;
-		h = w / r;
-	}
-
-	photo_div.style  = 'background-image: url('+photo[photo_act]+');'+'width: '+w+'px;'+'height: '+h+'px;';
-
-	console.log(w);
-	console.log(h);
-	console.log(r);
-	console.log(max_h);
-	console.log(max_w);
 }
 
 var ing_index = 0;

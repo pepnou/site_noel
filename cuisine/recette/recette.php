@@ -216,12 +216,14 @@
 					{
 						?>
 							<script type="text/javascript">
-								setup_photo('<?php echo htmlspecialchars($get_info[1], ENT_COMPAT | ENT_HTML401 | ENT_QUOTES, "UTF-8"); ?>');
+								setup_photo('<?php echo /*htmlspecialchars($get_info[1], ENT_COMPAT | ENT_HTML401 | ENT_QUOTES, "UTF-8");*/ addslashes($get_info[1]); ?>');
 							</script>
-							<div id="photo_div" onresize="photo_load();">
-								<img src="<?php echo addslashes($get_info[1]); ?>" id="photo" onload="photo_load();">
-								<input type="button" name="photo_min" value=" - " onclick="photo_min();">
-								<input type="button" name="photo_plus" value=" + " onclick="photo_plus();">
+							<div id="photo_div">
+								<img src="<?php echo htmlspecialchars($get_info[1], ENT_COMPAT | ENT_HTML401 | ENT_QUOTES, "UTF-8"); /*addslashes($get_info[1]);*/ ?>" id="photo">
+								<div id="photo_button_div">
+									<input type="button" name="photo_min" value=" - " onclick="photo_min();">
+									<input type="button" name="photo_plus" value=" + " onclick="photo_plus();">
+								</div>
 							</div>
 						<?php
 					}
@@ -231,7 +233,7 @@
 					{
 						?>
 							<script type="text/javascript">
-								setup_photo('<?php echo htmlspecialchars($get_info[1], ENT_COMPAT | ENT_HTML401 | ENT_QUOTES, "UTF-8"); ?>');
+								setup_photo('<?php echo /*htmlspecialchars($get_info[1], ENT_COMPAT | ENT_HTML401 | ENT_QUOTES, "UTF-8");*/ addslashes($get_info[1]); ?>');
 							</script>
 						<?php
 					}
