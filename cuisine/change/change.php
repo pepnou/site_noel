@@ -384,6 +384,27 @@
 								Photos (url)
 							</legend>
 							<div id="photos">
+							<?php
+								$recette_tags = array();
+									$sql = 'SELECT * FROM photo p WHERE p.idR = '.$_GET['id'].' ORDER BY idP ASC';
+
+									if (!$result = $mysqli->query($sql))
+									{
+										echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+										exit;
+									}
+
+									$index = 0;
+
+									while ($get_info = $result->fetch_row())
+									{
+										?>
+											<input type="url" id = "photo <?php echo "$index" ?>" value="<?php echo htmlspecialchars($get_info[1], ENT_COMPAT | ENT_HTML401 | ENT_QUOTES, "UTF-8"); ?>">
+										<?php
+										$index += 1;
+									}
+									$result->free();
+							?>
 							</div>
 							<div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%; margin-top: 10px;">
 								<input type="button" value="Ajouter une photo" id="AjoutPhoto">
@@ -399,7 +420,7 @@
 									});
 									document.getElementById("SupprPhoto").addEventListener("click", function() {
 										if( photos.children.length > 0 ) {
-											photos.lastChild.remove();
+											photos.lastElementChild.remove();
 										}
 									});
 								</script>
