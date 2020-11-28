@@ -323,8 +323,24 @@
 							<legend>
 								Tag
 							</legend>
+							<input type="hidden" id="ids_tags">
 							<div style="flex-direction: row; flex-wrap: wrap; width: initial;" id="tags">
 								<?php
+									$recette_tags = array();
+									$sql = 'SELECT t.idT FROM tague t WHERE t.idR = '.$_GET['id'];
+
+									if (!$result = $mysqli->query($sql))
+									{
+										echo "SELECT error in query " . $sql . " errno: " . $mysqli->errno . " error: " . $mysqli->error;
+										exit;
+									}
+									while ($get_info = $result->fetch_row())
+									{
+										array_push($recette_tags, $get_info[0]);
+									}
+									$result->free();
+
+
 									$sql = 'SELECT * FROM tag';
 
 									if (!$result = $mysqli->query($sql))
@@ -335,24 +351,34 @@
 
 									while ($get_info = $result->fetch_row())
 									{
+										$checked = array_search($get_info[0], $recette_tags);
+
 										$tag_id = "tag-".$get_info[0];
 										$tag_nom = $get_info[1];
 										?>
 											<div style="flex-direction: row;">
-												<input type="checkbox" <?php echo "id=\"$tag_id\" onclick=\"tag_clicked('$get_info[0]');\""; ?> >
+												<input type="checkbox" <?php echo "id=\"$tag_id\" onclick=\"tag_clicked('$get_info[0]');\""; ?> <?php if($checked === FALSE){}else{echo "checked";} ?> >
 												<label for=<?php echo "$tag_id"; ?>><?php echo "$tag_nom"; ?></label>
 											</div>
 										<?php
+
+										if($checked === FALSE){}
+										else {
+											echo "<script type=\"text/javascript\">tag_clicked('$get_info[0]');</script>";
+										}
 									}
 									$result->free();
 								?>
 							</div>
-							<input type="hidden" id="ids_tags">
+							
 							<input type="text" id="tag">
 							<input type="button" value="Ajouter un tag" id="AjoutTag">
 							<script type="text/javascript" src="./insert_tag.js"></script>
 							<input type="hidden" name="tag" id="tag">
 						</fieldset>
+
+
+
 						<fieldset>
 							<legend>
 								Photos (url)
